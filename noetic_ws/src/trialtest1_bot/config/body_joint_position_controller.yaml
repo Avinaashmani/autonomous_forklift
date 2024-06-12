@@ -1,0 +1,10 @@
+body_joint_controller:
+
+  joint_controller:
+    type: position_controllers/JointPositionController
+    publishe_rate: 1000
+
+  body_joint_position:
+
+    type: position_controllers/JointPositionController
+    joint: fork_joint

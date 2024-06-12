@@ -1,0 +1,13 @@
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/forward_command_controller.pc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/forward_command_controller/cmake/forward_command_controllerConfig.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/forward_command_controller/cmake/forward_command_controllerConfig-version.cmake
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/forward_command_controller/cmake.lock, /home/avinaash/noetic_ws/devel/./cmake.lock)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/forward_command_controller/lib/pkgconfig/forward_command_controller.pc, /home/avinaash/noetic_ws/devel/lib/pkgconfig/forward_command_controller.pc)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/forward_command_controller/share/forward_command_controller/cmake/forward_command_controllerConfig.cmake, /home/avinaash/noetic_ws/devel/share/forward_command_controller/cmake/forward_command_controllerConfig.cmake)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/forward_command_controller/share/forward_command_controller/cmake/forward_command_controllerConfig-version.cmake, /home/avinaash/noetic_ws/devel/share/forward_command_controller/cmake/forward_command_controllerConfig-version.cmake)
+Unlinking: /home/avinaash/noetic_ws/devel/lib/pkgconfig/forward_command_controller.pc
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/forward_command_controller/cmake/forward_command_controllerConfig.cmake
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/forward_command_controller/cmake/forward_command_controllerConfig-version.cmake
+Already unlinked: {}

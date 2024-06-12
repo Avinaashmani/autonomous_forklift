@@ -1,0 +1,17 @@
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/libgripper_action_controller.so
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/gripper_action_controller.pc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/gripper_action_controller/cmake/gripper_action_controllerConfig-version.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/gripper_action_controller/cmake/gripper_action_controllerConfig.cmake
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/gripper_action_controller/cmake.lock, /home/avinaash/noetic_ws/devel/./cmake.lock)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/gripper_action_controller/lib/libgripper_action_controller.so, /home/avinaash/noetic_ws/devel/lib/libgripper_action_controller.so)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/gripper_action_controller/lib/pkgconfig/gripper_action_controller.pc, /home/avinaash/noetic_ws/devel/lib/pkgconfig/gripper_action_controller.pc)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/gripper_action_controller/share/gripper_action_controller/cmake/gripper_action_controllerConfig-version.cmake, /home/avinaash/noetic_ws/devel/share/gripper_action_controller/cmake/gripper_action_controllerConfig-version.cmake)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/gripper_action_controller/share/gripper_action_controller/cmake/gripper_action_controllerConfig.cmake, /home/avinaash/noetic_ws/devel/share/gripper_action_controller/cmake/gripper_action_controllerConfig.cmake)
+Unlinking: /home/avinaash/noetic_ws/devel/lib/libgripper_action_controller.so
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/pkgconfig/gripper_action_controller.pc
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/gripper_action_controller/cmake/gripper_action_controllerConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/gripper_action_controller/cmake/gripper_action_controllerConfig.cmake
+Already unlinked: {}

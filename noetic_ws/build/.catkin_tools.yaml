@@ -1,0 +1,6 @@
+devel_space: /home/avinaash/autonomous_forklift/noetic_ws/devel
+install: false
+install_space: /home/avinaash/autonomous_forklift/noetic_ws/install
+profile: default
+source_space: /home/avinaash/autonomous_forklift/noetic_ws/src
+workspace: /home/avinaash/autonomous_forklift/noetic_ws

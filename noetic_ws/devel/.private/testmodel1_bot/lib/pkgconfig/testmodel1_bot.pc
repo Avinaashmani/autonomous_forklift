@@ -1,0 +1,8 @@
+prefix=/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/testmodel1_bot
+
+Name: testmodel1_bot
+Description: Description of testmodel1_bot
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

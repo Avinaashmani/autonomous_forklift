@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="trialtest1_bot">
+  <link
+    name="base_footprint">
+    <inertial>
+      <origin
+        xyz="0 -5.55111512312578E-17 0.0149999999999973"
+        rpy="0 0 0" />
+      <mass
+        value="9.42477796076939E-05" />
+      <inertia
+        ixx="7.09214541547898E-09"
+        ixy="1.01123998265244E-56"
+        ixz="-2.73196242009685E-42"
+        iyy="7.09214541547898E-09"
+        iyz="2.54645439948027E-23"
+        izz="4.71238898038469E-11" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/base_footprint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/base_footprint.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!-- BASE LINK -->
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00110889528000799 3.32856702339734E-08 0.0122235365873695"
+        rpy="0 0 0" />
+      <mass
+        value="5.90109462672067" />
+      <inertia
+        ixx="0.0605687229860901"
+        ixy="5.32641028567584E-05"
+        ixz="-0.0012057623179896"
+        iyy="0.0618059522629774"
+        iyz="-3.09471533359218E-05"
+        izz="0.0181880890761584" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="base_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.21"
+      rpy="0 0 0" />
+    <parent
+      link="base_footprint" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<!-- LEFT WHEEL LINK -->
+
+  <link
+    name="l_wheel_link">
+    <inertial>
+      <origin
+        xyz="-0.000214794745956093 -0.0211659275131799 5.48698625424393E-09"
+        rpy="0 0 0" />
+      <mass
+        value="1.21637660223565" />
+      <inertia
+        ixx="0.0044425512714785"
+        ixy="3.83894161637481E-05"
+        ixz="1.30032049861249E-06"
+        iyy="0.00822535307271289"
+        iyz="-1.32248253370272E-08"
+        izz="0.00444401827630389" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/l_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/l_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="l_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.0027041 0.26649 -0.11"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="l_wheel_link" />
+    <axis
+      xyz="-0.010147 0.99995 0" />
+    <dynamics
+      friction="1000" />
+  </joint>
+
+<!-- RIGHT WHEEL LINK -->
+
+  <link
+    name="r_wheel_link">
+    <inertial>
+      <origin
+        xyz="0.000214762370090854 0.0211659265973297 1.65109665661856E-08"
+        rpy="0 0 0" />
+      <mass
+        value="1.21637691245054" />
+      <inertia
+        ixx="0.00444196297902202"
+        ixy="3.83952491823244E-05"
+        ixz="4.92534166186046E-07"
+        iyy="0.00822535339679518"
+        iyz="-4.92329215348629E-09"
+        izz="0.0044446070225373" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/r_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/r_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="r_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0027041 -0.26649 -0.11"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="r_wheel_link" />
+    <axis
+      xyz="0.010147 0.99995 0" />
+    <dynamics
+      friction="1000" />
+  </joint>
+
+<!-- LASER LINK  -->
+
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="2.77555756156289E-17 1.11022302462516E-16 -0.0394999999999996"
+        rpy="0 0 0" />
+      <mass
+        value="0.39709731141375" />
+      <inertia
+        ixx="0.000365362617943268"
+        ixy="2.52855548134943E-51"
+        ixz="-1.21245706409418E-36"
+        iyy="0.000365362617943268"
+        iyz="1.53831787512683E-19"
+        izz="0.000317677849131001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/laser_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.747"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<!-- FORK LINK  -->
+
+ <link
+    name="fork_link">
+    <inertial>
+      <origin
+        xyz="-0.426079479774615 0.00022916320694906 -0.085650941266426"
+        rpy="0 0 0" />
+      <mass
+        value="26.6907913676592" />
+      <inertia
+        ixx="1.9864898873301"
+        ixy="0.000356816119490011"
+        ixz="-0.742877382061149"
+        iyy="3.95317442770865"
+        iyz="-0.000630357330742588"
+        izz="4.52285242374727" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/fork_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/fork_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="fork_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.12"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="fork_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit lower="-0.88" upper="0.88" effort="5" velocity="1.0"/>
+  </joint>
+
+<transmission name="fork_joint_transmission">
+  <type>transmission_interface/SimpleTransmission</type>
+    <joint name="fork_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="fork_motor">
+    <mechanicalReduction>1.0</mechanicalReduction>
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </actuator>
+</transmission>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/trialtest1_bot</robotNamespace>
+    </plugin>
+  </gazebo>
+
+<!-- LEFT ROLLER LINK -->
+
+  <link
+    name="l_roller_link">
+    <inertial>
+      <origin
+        xyz="-2.22044604925031E-16 0.0450000000000001 3.33066907387547E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.312850268419892" />
+      <inertia
+        ixx="0.00030732466509109"
+        ixy="2.96968961101246E-19"
+        ixz="-2.72716822202048E-21"
+        iyy="0.000204892709371601"
+        iyz="2.12585417426128E-19"
+        izz="0.00030732466509109" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/l_roller_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/l_roller_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<!-- LEFT ROLLER JOINT -->
+
+  <joint
+    name="l_roller_joint"
+    type="continuous">
+    <origin
+      xyz="-1.405 0.159 -0.255"
+      rpy="0 0 0" />
+    <parent
+      link="fork_link" />
+    <child
+      link="l_roller_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics
+      friction="0.1" />
+  </joint>
+
+<!-- RIGHT ROLLER LINK -->
+
+  <link
+    name="r_roller_link">
+    <inertial>
+      <origin
+        xyz="2.22044604925031E-16 -0.0449999999999999 3.33066907387547E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.312850268419892" />
+      <inertia
+        ixx="0.000307324665091091"
+        ixy="2.97604235811687E-19"
+        ixz="-2.49320621385971E-21"
+        iyy="0.000204892709371601"
+        iyz="1.79623924377115E-19"
+        izz="0.000307324665091091" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/r_roller_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://trialtest1_bot/meshes/r_roller_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+ 
+  <joint
+    name="r_roller_joint"
+    type="continuous">
+    <origin
+      xyz="-1.405 -0.151 -0.255"
+      rpy="0 0 0" />
+    <parent
+      link="fork_link" />
+    <child
+      link="r_roller_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics
+      friction="0.1" />
+  </joint>
+
+<!-- GAZEBO PLUGINS -->
+
+  <gazebo reference="laser_link">
+    <material>Gazebo/FlatBlack</material>
+    <sensor type="ray" name="lds_lfcd_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>760</samples>
+            <resolution>1</resolution>
+            <min_angle>0.0</min_angle>
+            <max_angle>6.28319</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120</min>
+          <max>3.5</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
+        <topicName>scan</topicName>
+        <frameName>laser_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+<gazebo>
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+
+    <!-- Plugin update rate in Hz -->
+    <updateRate>10</updateRate>
+
+    <!-- Name of left joint, defaults to `left_joint` -->
+    <leftJoint>l_wheel_joint</leftJoint>
+
+    <!-- Name of right joint, defaults to `right_joint` -->
+    <rightJoint>r_wheel_joint</rightJoint>
+
+    <!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+    <wheelSeparation>0.5380</wheelSeparation>
+
+    <!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+    <wheelDiameter>0.2410</wheelDiameter>
+
+    <!-- Wheel acceleration, in rad/s^2, defaults to 0.0 rad/s^2 -->
+    <wheelAcceleration>1.0</wheelAcceleration>
+
+    <!-- Maximum torque which the wheels can produce, in Nm, defaults to 5 Nm -->
+    <wheelTorque>20</wheelTorque>
+
+    <!-- Topic to receive geometry_msgs/Twist message commands, defaults to `cmd_vel` -->
+    <commandTopic>cmd_vel</commandTopic>
+
+    <!-- Topic to publish nav_msgs/Odometry messages, defaults to `odom` -->
+    <odometryTopic>odom</odometryTopic>
+
+    <!-- Odometry frame, defaults to `odom` -->
+    <odometryFrame>odom</odometryFrame>
+
+    <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+    <robotBaseFrame>base_link</robotBaseFrame>
+
+    <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
+    <odometrySource>1</odometrySource>
+
+    <!-- Set to true to publish transforms for the wheel links, defaults to false -->
+    <publishWheelTF>false</publishWheelTF>
+
+    <!-- Set to true to publish transforms for the odometry, defaults to true -->
+    <publishOdom>true</publishOdom>
+
+    <!-- Set to true to publish sensor_msgs/JointState on /joint_states for the wheel joints, defaults to false -->
+    <publishWheelJointState>false</publishWheelJointState>
+
+    <!-- Set to true to swap right and left wheels, defaults to true -->
+    <legacyMode>false</legacyMode>
+  </plugin>
+</gazebo>
+
+</robot>

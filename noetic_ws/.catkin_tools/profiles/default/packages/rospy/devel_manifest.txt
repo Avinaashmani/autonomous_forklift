@@ -1,0 +1,5 @@
+rospy
+/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/rospy/cmake.lock /home/avinaash/autonomous_forklift/noetic_ws/devel/./cmake.lock
+/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/rospy/lib/pkgconfig/rospy.pc /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/rospy.pc
+/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/rospy/share/rospy/cmake/rospyConfig-version.cmake /home/avinaash/autonomous_forklift/noetic_ws/devel/share/rospy/cmake/rospyConfig-version.cmake
+/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/rospy/share/rospy/cmake/rospyConfig.cmake /home/avinaash/autonomous_forklift/noetic_ws/devel/share/rospy/cmake/rospyConfig.cmake

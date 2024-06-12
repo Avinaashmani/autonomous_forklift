@@ -1,0 +1,13 @@
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/testmodel1_bot.pc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig-version.cmake
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/testmodel1_bot/cmake.lock, /home/avinaash/noetic_ws/devel/./cmake.lock)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/testmodel1_bot/lib/pkgconfig/testmodel1_bot.pc, /home/avinaash/noetic_ws/devel/lib/pkgconfig/testmodel1_bot.pc)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/testmodel1_bot/share/testmodel1_bot/cmake/testmodel1_botConfig.cmake, /home/avinaash/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig.cmake)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/testmodel1_bot/share/testmodel1_bot/cmake/testmodel1_botConfig-version.cmake, /home/avinaash/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig-version.cmake)
+Unlinking: /home/avinaash/noetic_ws/devel/lib/pkgconfig/testmodel1_bot.pc
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig.cmake
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig-version.cmake
+Already unlinked: {}

@@ -1,0 +1,7 @@
+<launch>
+<rosparam file = "$(find trialtest1_bot)/config/body_joint_controller.yaml" command="load"/>
+
+<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/trialtest1_bot" 
+                args="body_joint_controller body_trajectory_controller"/>
+    <remap from="/joint_states" to="/simple_model/joint_states" />
+</launch>

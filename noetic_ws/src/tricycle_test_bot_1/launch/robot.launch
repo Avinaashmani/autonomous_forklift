@@ -1,0 +1,45 @@
+<launch>
+  <arg name="model" default="$(find tricycle_test_bot_1)/urdf/tricycle_test_bot_1.urdf"/>
+
+  <!-- Load the robot description parameter -->
+  <param name="robot_description" command="cat $(arg model)"/>
+  <rosparam file="$(find tricycle_test_bot_1)/config/joint_trajectory_controller.yaml" command="load"/>
+
+  <!-- Robot State Publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- Joint State Publisher GUI -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tricycle_test_bot_1)/urdf.rviz"/>
+
+  <!-- Gazebo Simulation -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- Static Transform Publisher -->
+  <node name="tf_footprint_base" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 base_link base_footprint 40"/>
+
+  <!-- Spawn the robot model in Gazebo -->
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -param robot_description -model tricycle_test_bot_1"
+        output="screen"/>
+
+  <!-- Gazebo ROS Control Plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/tricycle_test_bot_1</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="joint_state_controller" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="tricycle_test_bot_1"
+        args=" steering_joint_controller" />
+        
+  <!-- Ensure the controllers are properly initialized -->
+  <node name="fake_joint_calibration" pkg="rostopic" type="rostopic"
+        args="pub /calibrated std_msgs/Bool true"/>
+</launch>

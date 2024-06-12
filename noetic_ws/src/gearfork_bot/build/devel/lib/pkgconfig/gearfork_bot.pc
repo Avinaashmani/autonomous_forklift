@@ -1,0 +1,8 @@
+prefix=/home/avinaash/noetic_ws/src/gearfork_bot/build/devel
+
+Name: gearfork_bot
+Description: Description of gearfork_bot
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

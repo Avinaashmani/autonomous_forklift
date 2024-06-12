@@ -1,0 +1,5 @@
+pallet_bot
+/home/avinaash/noetic_ws/devel/.private/pallet_bot/cmake.lock /home/avinaash/noetic_ws/devel/./cmake.lock
+/home/avinaash/noetic_ws/devel/.private/pallet_bot/lib/pkgconfig/pallet_bot.pc /home/avinaash/noetic_ws/devel/lib/pkgconfig/pallet_bot.pc
+/home/avinaash/noetic_ws/devel/.private/pallet_bot/share/pallet_bot/cmake/pallet_botConfig-version.cmake /home/avinaash/noetic_ws/devel/share/pallet_bot/cmake/pallet_botConfig-version.cmake
+/home/avinaash/noetic_ws/devel/.private/pallet_bot/share/pallet_bot/cmake/pallet_botConfig.cmake /home/avinaash/noetic_ws/devel/share/pallet_bot/cmake/pallet_botConfig.cmake

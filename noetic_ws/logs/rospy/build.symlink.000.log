@@ -1,0 +1,13 @@
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/rospy.pc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/rospy/cmake/rospyConfig-version.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/rospy/cmake/rospyConfig.cmake
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/rospy/cmake.lock, /home/avinaash/noetic_ws/devel/./cmake.lock)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/rospy/lib/pkgconfig/rospy.pc, /home/avinaash/noetic_ws/devel/lib/pkgconfig/rospy.pc)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/rospy/share/rospy/cmake/rospyConfig-version.cmake, /home/avinaash/noetic_ws/devel/share/rospy/cmake/rospyConfig-version.cmake)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/rospy/share/rospy/cmake/rospyConfig.cmake, /home/avinaash/noetic_ws/devel/share/rospy/cmake/rospyConfig.cmake)
+Unlinking: /home/avinaash/noetic_ws/devel/lib/pkgconfig/rospy.pc
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/rospy/cmake/rospyConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/rospy/cmake/rospyConfig.cmake
+Already unlinked: {}

@@ -1,0 +1,5 @@
+amr_bot
+/home/avinaash/noetic_ws/devel/.private/amr_bot/cmake.lock /home/avinaash/noetic_ws/devel/./cmake.lock
+/home/avinaash/noetic_ws/devel/.private/amr_bot/lib/pkgconfig/amr_bot.pc /home/avinaash/noetic_ws/devel/lib/pkgconfig/amr_bot.pc
+/home/avinaash/noetic_ws/devel/.private/amr_bot/share/amr_bot/cmake/amr_botConfig-version.cmake /home/avinaash/noetic_ws/devel/share/amr_bot/cmake/amr_botConfig-version.cmake
+/home/avinaash/noetic_ws/devel/.private/amr_bot/share/amr_bot/cmake/amr_botConfig.cmake /home/avinaash/noetic_ws/devel/share/amr_bot/cmake/amr_botConfig.cmake

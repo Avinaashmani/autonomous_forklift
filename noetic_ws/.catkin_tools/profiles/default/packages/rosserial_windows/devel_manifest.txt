@@ -1,0 +1,7 @@
+rosserial/rosserial_windows
+/home/avinaash/noetic_ws/devel/.private/rosserial_windows/cmake.lock /home/avinaash/noetic_ws/devel/./cmake.lock
+/home/avinaash/noetic_ws/devel/.private/rosserial_windows/lib/rosserial_windows/make_libraries.py /home/avinaash/noetic_ws/devel/lib/rosserial_windows/make_libraries.py
+/home/avinaash/noetic_ws/devel/.private/rosserial_windows/lib/rosserial_windows/cmake.lock /home/avinaash/noetic_ws/devel/lib/rosserial_windows/cmake.lock
+/home/avinaash/noetic_ws/devel/.private/rosserial_windows/lib/pkgconfig/rosserial_windows.pc /home/avinaash/noetic_ws/devel/lib/pkgconfig/rosserial_windows.pc
+/home/avinaash/noetic_ws/devel/.private/rosserial_windows/share/rosserial_windows/cmake/rosserial_windowsConfig-version.cmake /home/avinaash/noetic_ws/devel/share/rosserial_windows/cmake/rosserial_windowsConfig-version.cmake
+/home/avinaash/noetic_ws/devel/.private/rosserial_windows/share/rosserial_windows/cmake/rosserial_windowsConfig.cmake /home/avinaash/noetic_ws/devel/share/rosserial_windows/cmake/rosserial_windowsConfig.cmake

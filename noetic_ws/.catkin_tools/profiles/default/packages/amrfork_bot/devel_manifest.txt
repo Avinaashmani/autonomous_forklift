@@ -1,0 +1,5 @@
+amrfork_bot
+/home/avinaash/noetic_ws/devel/.private/amrfork_bot/cmake.lock /home/avinaash/noetic_ws/devel/./cmake.lock
+/home/avinaash/noetic_ws/devel/.private/amrfork_bot/lib/pkgconfig/amrfork_bot.pc /home/avinaash/noetic_ws/devel/lib/pkgconfig/amrfork_bot.pc
+/home/avinaash/noetic_ws/devel/.private/amrfork_bot/share/amrfork_bot/cmake/amrfork_botConfig.cmake /home/avinaash/noetic_ws/devel/share/amrfork_bot/cmake/amrfork_botConfig.cmake
+/home/avinaash/noetic_ws/devel/.private/amrfork_bot/share/amrfork_bot/cmake/amrfork_botConfig-version.cmake /home/avinaash/noetic_ws/devel/share/amrfork_bot/cmake/amrfork_botConfig-version.cmake

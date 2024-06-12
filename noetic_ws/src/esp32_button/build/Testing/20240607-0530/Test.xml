@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20240607-0530-Experimental"
+	Name="avinaash-ROG-Zephyrus-G14-GA402NJ-GA402NJ"
+	Generator="ctest-3.16.3"
+	CompilerName="/usr/bin/c++"
+	CompilerVersion="9.4.0"
+	OSName="Linux"
+	Hostname="avinaash-ROG-Zephyrus-G14-GA402NJ-GA402NJ"
+	OSRelease="5.15.0-107-generic"
+	OSVersion="#117~20.04.1-Ubuntu SMP Tue Apr 30 10:35:57 UTC 2024"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="AuthenticAMD"
+	VendorID="Advanced Micro Devices"
+	FamilyID="25"
+	ModelID="68"
+	ProcessorCacheSize="512"
+	NumberOfLogicalCPU="16"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="2047"
+	TotalPhysicalMemory="15223"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2323.97"
+	>
+	<Testing>
+		<StartDateTime>Jun 07 11:00 IST</StartDateTime>
+		<StartTestTime>1717738247</StartTestTime>
+		<TestList/>
+		<EndDateTime>Jun 07 11:00 IST</EndDateTime>
+		<EndTestTime>1717738247</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

@@ -1,0 +1,9 @@
+tricycle_test_bot_1:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 10
+    joint: front_fork_joint
+
+  steering_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints: [front_fork_joint]

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/avinaash/autonomous_forklift/noetic_ws/devel/.private/tricycle_test_bot_1/setup.sh

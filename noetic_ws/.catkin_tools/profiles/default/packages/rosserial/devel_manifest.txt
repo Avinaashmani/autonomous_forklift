@@ -1,0 +1,2 @@
+rosserial/rosserial
+/home/avinaash/noetic_ws/devel/.private/rosserial/cmake.lock /home/avinaash/noetic_ws/devel/./cmake.lock

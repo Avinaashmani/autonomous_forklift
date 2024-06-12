@@ -1,0 +1,5 @@
+<launch>
+  <rosparam file="$(find tricycle_test_bot_1)/config/joint_trajectory_controller.yaml" command="load"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="joint_state_controller front_fork_position_controller"/>
+</launch>

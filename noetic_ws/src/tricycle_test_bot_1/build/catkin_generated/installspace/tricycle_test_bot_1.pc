@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: tricycle_test_bot_1
+Description: Description of tricycle_test_bot_1
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

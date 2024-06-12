@@ -1,0 +1,871 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='gearfork_bot'>
+      <link name='base_footprint'>
+        <inertial>
+          <pose>0.364933 -0.015221 0.223171 0 -0 0</pose>
+          <mass>7.22673</mass>
+          <inertia>
+            <ixx>0.2612</ixx>
+            <ixy>0.061618</ixy>
+            <ixz>-0.177165</ixz>
+            <iyy>0.994792</iyy>
+            <iyz>-0.00749396</iyz>
+            <izz>1.07132</izz>
+          </inertia>
+        </inertial>
+        <collision name='base_footprint_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/base_footprint.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__base_link_collision_1'>
+          <pose>0 0 0.035 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='base_footprint_fixed_joint_lump__laser_link_collision_2'>
+          <pose>0.93 -0.22 0.181 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/laser_link.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='base_footprint_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/base_footprint.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__base_link_visual_1'>
+          <pose>0 0 0.035 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='base_footprint_fixed_joint_lump__laser_link_visual_2'>
+          <pose>0.93 -0.22 0.181 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/laser_link.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/FlatBlack</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <sensor name='lds_lfcd_sensor' type='ray'>
+          <visualize>1</visualize>
+          <update_rate>5</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>760</samples>
+                <resolution>1</resolution>
+                <min_angle>-2.2</min_angle>
+                <max_angle>1.57</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.12</min>
+              <max>3.5</max>
+              <resolution>0.015</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin name='gazebo_ros_lds_lfcd_controller' filename='libgazebo_ros_laser.so'>
+            <topicName>/scan</topicName>
+            <frameName>laser_link</frameName>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <pose>0.93 -0.22 0.181 0 -0 0</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='lroller_joint' type='revolute'>
+        <pose relative_to='base_footprint'>-0.6 0.17 0.045 0 -0 0</pose>
+        <parent>base_footprint</parent>
+        <child>lroller_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0.1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='lroller_link'>
+        <pose relative_to='lroller_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0.045 0 0 -0 0</pose>
+          <mass>0.31285</mass>
+          <inertia>
+            <ixx>0.000307325</ixx>
+            <ixy>8.78477e-20</ixy>
+            <ixz>-2.3574e-20</ixz>
+            <iyy>0.000204893</iyy>
+            <iyz>2.69663e-19</iyz>
+            <izz>0.000307325</izz>
+          </inertia>
+        </inertial>
+        <collision name='lroller_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/lroller_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='lroller_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/lroller_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='motor_joint' type='revolute'>
+        <pose relative_to='base_footprint'>0.6 0 0.322 0 -0 0</pose>
+        <parent>base_footprint</parent>
+        <child>motor_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-0.88</lower>
+            <upper>0.88</upper>
+            <effort>5</effort>
+            <velocity>1</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='motor_link'>
+        <pose relative_to='motor_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.030545 -0.051619 -0.152664 0 -0 0</pose>
+          <mass>3.6295</mass>
+          <inertia>
+            <ixx>0.0208732</ixx>
+            <ixy>0.00122763</ixy>
+            <ixz>8.16486e-06</ixz>
+            <iyy>0.0180104</iyy>
+            <iyz>-0.0033588</iyz>
+            <izz>0.024987</izz>
+          </inertia>
+        </inertial>
+        <collision name='motor_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/motor_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='motor_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/motor_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='wheel_joint' type='revolute'>
+        <pose relative_to='motor_link'>0.004014 0.033026 -0.247 0 -0 0</pose>
+        <parent>motor_link</parent>
+        <child>wheel_link</child>
+        <axis>
+          <xyz>0.006265 0.99998 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='wheel_link'>
+        <pose relative_to='wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.000172 -0.02745 0 0 -0 0</pose>
+          <mass>0.919701</mass>
+          <inertia>
+            <ixx>0.00158997</ixx>
+            <ixy>-5.62419e-06</ixy>
+            <ixz>-6.63957e-20</ixz>
+            <iyy>0.0024877</iyy>
+            <iyz>1.16271e-19</iyz>
+            <izz>0.00158993</izz>
+          </inertia>
+        </inertial>
+        <collision name='wheel_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/wheel_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='wheel_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/wheel_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='rroller_joint' type='revolute'>
+        <pose relative_to='base_footprint'>-0.6 -0.17 0.045 0 -0 0</pose>
+        <parent>base_footprint</parent>
+        <child>rroller_link</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <damping>0</damping>
+            <friction>0.1</friction>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='rroller_link'>
+        <pose relative_to='rroller_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 -0.045 0 0 -0 0</pose>
+          <mass>0.31285</mass>
+          <inertia>
+            <ixx>0.000307325</ixx>
+            <ixy>3.35272e-19</ixy>
+            <ixz>-8.68654e-21</ixz>
+            <iyy>0.000204893</iyy>
+            <iyz>4.43634e-20</iyz>
+            <izz>0.000307325</izz>
+          </inertia>
+        </inertial>
+        <collision name='rroller_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/rroller_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='rroller_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/rroller_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='steering_joint' type='revolute'>
+        <pose relative_to='base_footprint'>0.74937 0 0.267 0 -0 0</pose>
+        <parent>base_footprint</parent>
+        <child>steering_link</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='steering_link'>
+        <pose relative_to='steering_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0.070853 0 -0 0</pose>
+          <mass>0.100938</mass>
+          <inertia>
+            <ixx>0.000449053</ixx>
+            <ixy>-1.89272e-20</ixy>
+            <ixz>6.21936e-20</ixz>
+            <iyy>0.000449053</iyy>
+            <iyz>-1.60008e-19</iyz>
+            <izz>1.73496e-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='steering_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/steering_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='steering_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/meshes/steering_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+        <robotNamespace>/gearfork_bot</robotNamespace>
+      </plugin>
+      <plugin name='differential_drive_controller' filename='libgazebo_ros_diff_drive.so'>
+        <updateRate>10</updateRate>
+        <leftJoint>wheel_joint</leftJoint>
+        <rightJoint>wheel_joint</rightJoint>
+        <wheelSeparation>0.5380</wheelSeparation>
+        <wheelDiameter>0.2410</wheelDiameter>
+        <wheelAcceleration>1.0</wheelAcceleration>
+        <wheelTorque>10</wheelTorque>
+        <commandTopic>/gearfork_bot/cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <odometrySource>1</odometrySource>
+        <publishWheelTF>0</publishWheelTF>
+        <publishOdom>1</publishOdom>
+        <publishWheelJointState>0</publishWheelJointState>
+        <legacyMode>0</legacyMode>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <frame name='laser_joint' attached_to='base_link'>
+        <pose>0.93 -0.22 0.146 0 -0 0</pose>
+      </frame>
+      <frame name='laser_link' attached_to='laser_joint'/>
+      <frame name='base_joint' attached_to='base_footprint'>
+        <pose>0 0 0.035 0 -0 0</pose>
+      </frame>
+      <frame name='base_link' attached_to='base_joint'/>
+      <pose>0 0 0 0 -0 0</pose>
+    </model>
+    <model name='turtlebot3_square'>
+      <pose>0.685886 -0.076717 0 0 -0 0</pose>
+      <link name='Wall_0'>
+        <collision name='Wall_0_Collision'>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_0_Visual'>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose>0 1.925 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='Wall_2'>
+        <collision name='Wall_2_Collision'>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_2_Visual'>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose>-1.925 0 0 0 0 -1.5708</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='Wall_3'>
+        <collision name='Wall_3_Collision'>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_3_Visual'>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose>0 -1.925 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='Wall_4'>
+        <collision name='Wall_4_Collision'>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_4_Visual'>
+          <pose>0 0 0.25 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>4 0.15 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Wood</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose>1.925 0 0 0 -0 1.5708</pose>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+    </model>
+    <state world_name='default'>
+      <sim_time>61 821000000</sim_time>
+      <real_time>62 349786797</real_time>
+      <wall_time>1718168688 927468267</wall_time>
+      <iterations>61821</iterations>
+      <model name='gearfork_bot'>
+        <pose>0.006455 -0.004126 3.5e-05 0.037793 -0.00073 -0.063535</pose>
+        <scale>1 1 1</scale>
+        <link name='base_footprint'>
+          <pose>0.006455 -0.004126 3.5e-05 0.037793 -0.00073 -0.063535</pose>
+          <velocity>-0.00126 -0.000961 -0.002723 -0.005566 0.004359 -0.001813</velocity>
+          <acceleration>0.584374 0.745928 -8.09007 3.06035 -0.170832 0.834105</acceleration>
+          <wrench>4.22311 5.39062 -58.4647 0 -0 0</wrench>
+        </link>
+        <link name='lroller_link'>
+          <pose>-0.581694 0.201811 0.050989 0.037792 0.002039 -0.06343</pose>
+          <velocity>-0.000706 0.000402 -0.001465 -0.005035 0.004328 -0.001858</velocity>
+          <acceleration>-0.389609 0.781726 -3.35005 -0.212413 1.23475 1.18392</acceleration>
+          <wrench>-0.121889 0.244563 -1.04806 0 -0 0</wrench>
+        </link>
+        <link name='motor_link'>
+          <pose>0.604237 -0.054348 0.322244 0.037796 -0.000727 -0.063537</pose>
+          <velocity>-6.9e-05 -0.000273 -0.005221 -0.006352 0.00364 -0.001821</velocity>
+          <acceleration>-0.018944 -0.653061 -10.05 0.278834 0.756858 -2.08102</acceleration>
+          <wrench>-0.068758 -2.37029 -36.4764 0 -0 0</wrench>
+        </link>
+        <link name='rroller_link'>
+          <pose>-0.603256 -0.13726 0.038147 0.066634 -0.966995 -0.118305</pose>
+          <velocity>-0.001353 0.00024 -0.00031 -0.005976 -0.026852 0.00346</velocity>
+          <acceleration>-0.747709 0.370129 -0.300841 0.380688 -0.146689 0.729195</acceleration>
+          <wrench>-0.233921 0.115795 -0.094118 0 -0 0</wrench>
+        </link>
+        <link name='steering_link'>
+          <pose>0.753478 -0.061761 0.267392 0.037667 -0.003179 0.0013</pose>
+          <velocity>-0.000256 -0.000815 -0.005641 -0.005574 0.00436 0.00017</velocity>
+          <acceleration>1.45964 1.27074 -11.2473 -1.41614 0.398347 2.36216</acceleration>
+          <wrench>0.147333 0.128266 -1.13528 0 -0 0</wrench>
+        </link>
+        <link name='wheel_link'>
+          <pose>0.61111 -0.012364 0.076674 0.040585 0.248996 -0.053695</pose>
+          <velocity>-0.000992 -0.001741 -0.006096 -0.002981 0.003415 -0.002076</velocity>
+          <acceleration>-0.786879 -1.53705 -12.0134 0.36445 0.71992 -2.66947</acceleration>
+          <wrench>-0.723693 -1.41363 -11.0488 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='turtlebot3_square'>
+        <pose>0.685886 -0.076717 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='Wall_0'>
+          <pose>0.685886 1.84828 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_2'>
+          <pose>-1.23911 -0.076717 0 0 0 -1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_3'>
+          <pose>0.685886 -2.00172 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_4'>
+          <pose>2.61089 -0.076717 0 0 -0 1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0.449919 0.915289 10.6749 0 1.54979 -0.01581</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

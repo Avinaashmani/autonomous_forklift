@@ -1,0 +1,9 @@
+trialtest1_bot:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 10
+    joint: fork_joint
+
+  steering_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints: [fork_joint]

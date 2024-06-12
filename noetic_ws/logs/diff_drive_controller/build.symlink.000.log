@@ -1,0 +1,53 @@
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/libdiff_drive_controller.so
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/__init__.py
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/cfg/DiffDriveControllerConfig.py
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/cfg/__init__.py
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/diff_drive_controller.pc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/diff_drive_controller/diffbot
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/diff_drive_controller/skidsteerbot
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/diff_drive_controller/cmake/diff_drive_controllerConfig.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/diff_drive_controller/cmake/diff_drive_controllerConfig-version.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig-usage.dox
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig.wikidoc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig.dox
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/include/diff_drive_controller/DiffDriveControllerConfig.h
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/cmake.lock, /home/avinaash/noetic_ws/devel/./cmake.lock)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/lib/libdiff_drive_controller.so, /home/avinaash/noetic_ws/devel/lib/libdiff_drive_controller.so)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/lib/python3/dist-packages/diff_drive_controller/__init__.py, /home/avinaash/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/__init__.py)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/lib/python3/dist-packages/diff_drive_controller/cfg/DiffDriveControllerConfig.py, /home/avinaash/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/cfg/DiffDriveControllerConfig.py)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/lib/python3/dist-packages/diff_drive_controller/cfg/__init__.py, /home/avinaash/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/cfg/__init__.py)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/lib/pkgconfig/diff_drive_controller.pc, /home/avinaash/noetic_ws/devel/lib/pkgconfig/diff_drive_controller.pc)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/lib/diff_drive_controller/diffbot, /home/avinaash/noetic_ws/devel/lib/diff_drive_controller/diffbot)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/lib/diff_drive_controller/skidsteerbot, /home/avinaash/noetic_ws/devel/lib/diff_drive_controller/skidsteerbot)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/share/diff_drive_controller/cmake/diff_drive_controllerConfig.cmake, /home/avinaash/noetic_ws/devel/share/diff_drive_controller/cmake/diff_drive_controllerConfig.cmake)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/share/diff_drive_controller/cmake/diff_drive_controllerConfig-version.cmake, /home/avinaash/noetic_ws/devel/share/diff_drive_controller/cmake/diff_drive_controllerConfig-version.cmake)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/share/diff_drive_controller/docs/DiffDriveControllerConfig-usage.dox, /home/avinaash/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig-usage.dox)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/share/diff_drive_controller/docs/DiffDriveControllerConfig.wikidoc, /home/avinaash/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig.wikidoc)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/share/diff_drive_controller/docs/DiffDriveControllerConfig.dox, /home/avinaash/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig.dox)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/diff_drive_controller/include/diff_drive_controller/DiffDriveControllerConfig.h, /home/avinaash/noetic_ws/devel/include/diff_drive_controller/DiffDriveControllerConfig.h)
+Unlinking: /home/avinaash/noetic_ws/devel/lib/libdiff_drive_controller.so
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/__init__.py
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/cfg/DiffDriveControllerConfig.py
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/python3/dist-packages/diff_drive_controller/cfg/__init__.py
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/pkgconfig/diff_drive_controller.pc
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/diff_drive_controller/diffbot
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/diff_drive_controller/skidsteerbot
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/diff_drive_controller/cmake/diff_drive_controllerConfig.cmake
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/diff_drive_controller/cmake/diff_drive_controllerConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig-usage.dox
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig.wikidoc
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/diff_drive_controller/docs/DiffDriveControllerConfig.dox
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/include/diff_drive_controller/DiffDriveControllerConfig.h
+Already unlinked: {}

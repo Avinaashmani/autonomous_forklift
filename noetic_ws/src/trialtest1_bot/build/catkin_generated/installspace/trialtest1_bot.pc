@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: trialtest1_bot
+Description: Description of trialtest1_bot
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

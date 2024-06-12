@@ -1,0 +1,17 @@
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/libposition_controllers.so
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/position_controllers.pc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/position_controllers/cmake/position_controllersConfig-version.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/position_controllers/cmake/position_controllersConfig.cmake
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/position_controllers/cmake.lock, /home/avinaash/noetic_ws/devel/./cmake.lock)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/position_controllers/lib/libposition_controllers.so, /home/avinaash/noetic_ws/devel/lib/libposition_controllers.so)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/position_controllers/lib/pkgconfig/position_controllers.pc, /home/avinaash/noetic_ws/devel/lib/pkgconfig/position_controllers.pc)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/position_controllers/share/position_controllers/cmake/position_controllersConfig-version.cmake, /home/avinaash/noetic_ws/devel/share/position_controllers/cmake/position_controllersConfig-version.cmake)
+Cleaning: (/home/avinaash/noetic_ws/devel/.private/position_controllers/share/position_controllers/cmake/position_controllersConfig.cmake, /home/avinaash/noetic_ws/devel/share/position_controllers/cmake/position_controllersConfig.cmake)
+Unlinking: /home/avinaash/noetic_ws/devel/lib/libposition_controllers.so
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/lib/pkgconfig/position_controllers.pc
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/position_controllers/cmake/position_controllersConfig-version.cmake
+Already unlinked: {}
+Unlinking: /home/avinaash/noetic_ws/devel/share/position_controllers/cmake/position_controllersConfig.cmake
+Already unlinked: {}

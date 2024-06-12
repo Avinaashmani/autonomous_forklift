@@ -1,0 +1,17 @@
+digraph G {
+node [shape=box];
+"base_footprint" [label="base_footprint"];
+"base_link" [label="base_link"];
+"l_wheel_link" [label="l_wheel_link"];
+"laser_link" [label="laser_link"];
+"r_wheel_link" [label="r_wheel_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_footprint" -> "base_joint" [label="xyz: 0 0 0.21 \nrpy: 0 -0 0"]
+"base_joint" -> "base_link"
+"base_link" -> "l_wheel_joint" [label="xyz: 0.0027041 0.26649 -0.11 \nrpy: 0 -0 0"]
+"l_wheel_joint" -> "l_wheel_link"
+"base_link" -> "laser_joint" [label="xyz: 0 0 0.747 \nrpy: 0 -0 0"]
+"laser_joint" -> "laser_link"
+"base_link" -> "r_wheel_joint" [label="xyz: -0.0027041 -0.26649 -0.11 \nrpy: 0 -0 0"]
+"r_wheel_joint" -> "r_wheel_link"
+}
