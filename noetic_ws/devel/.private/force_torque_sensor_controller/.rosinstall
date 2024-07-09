@@ -1,2 +1,0 @@
-- setup-file:
-    local-name: /home/avinaash/autonomous_forklift/noetic_ws/devel/.private/force_torque_sensor_controller/setup.sh

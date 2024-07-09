@@ -1,0 +1,3 @@
+<launch>
+    <node name='pallet_dock' pkg='gearfork_bot' type='dock_controller_01.py' output='screen' />
+</launch>

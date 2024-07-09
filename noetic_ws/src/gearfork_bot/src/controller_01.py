@@ -34,7 +34,6 @@ class Controller:
         self.cmd_vel.linear.x = msg.linear.x
         self.linear_vel = msg.linear.x
 
-        # if self.angular_vel and 
 
         self.steering_msg.header.stamp = rospy.Time.now()
         self.steering_msg.header.frame_id = ''

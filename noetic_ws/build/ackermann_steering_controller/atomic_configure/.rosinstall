@@ -1,2 +1,0 @@
-- setup-file:
-    local-name: /home/avinaash/autonomous_forklift/noetic_ws/devel/.private/ackermann_steering_controller/setup.sh

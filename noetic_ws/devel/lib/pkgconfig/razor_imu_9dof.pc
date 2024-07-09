@@ -1,1 +1,0 @@
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/razor_imu_9dof/lib/pkgconfig/razor_imu_9dof.pc
