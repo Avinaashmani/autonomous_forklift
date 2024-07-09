@@ -1,6 +1,6 @@
 <launch>
 
-    <node name='pallet_tf_publisher' pkg='gearfork_bot' type='tf_publisher.py' output='screen' />
+    
     <node name='twist_to_gear_fork_drive_controls' pkg='gearfork_bot' type='controller_01.py' output='screen' />
 
 </launch>

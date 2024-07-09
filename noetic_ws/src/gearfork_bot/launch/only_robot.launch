@@ -24,9 +24,9 @@
     name="robot_description"
     textfile="$(find gearfork_bot)/urdf/gearfork_bot.urdf" />
   <node
-    name="joint_state_publisher_gui"
-    pkg="joint_state_publisher_gui"
-    type="joint_state_publisher_gui" />
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
@@ -36,7 +36,7 @@
     pkg="rviz"
     type="rviz"
     args="-d $(find gearfork_bot)/rviz/trail_test_2.rviz" />
-
+<node name='pallet_tf_publisher' pkg='gearfork_bot' type='tf_publisher.py' output='screen' />
 <rosparam file = "$(find gearfork_bot)/config/motor_joint_controller.yaml" command="load"/>
 
 <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/gearfork_bot" 

@@ -7,7 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
       Splitter Ratio: 0.5
-    Tree Height: 549
+    Tree Height: 363
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -70,8 +70,6 @@ Visualization Manager:
           Value: true
         odom:
           Value: true
-        pallet_center:
-          Value: true
         rroller_link:
           Value: true
         steering_link:
@@ -100,8 +98,6 @@ Visualization Manager:
               {}
             steering_link:
               {}
-          pallet_center:
-            {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -216,7 +212,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.6631596088409424
+      Distance: 8.098078727722168
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -224,9 +220,9 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -3.3903627395629883
+        Y: 1.4499146938323975
+        Z: 1.3721004724502563
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
@@ -252,5 +248,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1200
-  X: 954
-  Y: 27
+  X: 776
+  Y: 99

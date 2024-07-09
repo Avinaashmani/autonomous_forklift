@@ -118,12 +118,12 @@ class Dockpallet:
         max_linear_speed = 0.1
         max_angular_speed = 0.10
 
-        self.controlled_speed = max(-max_linear_speed, min(max_linear_speed, self.controlled_speed))
+        # self.controlled_speed = max(-max_linear_speed, min(max_linear_speed, self.controlled_speed))
         self.controlled_angle = max(-max_angular_speed, min(max_angular_speed, self.controlled_angle))
 
-        self.cmd_vel.angular.z = self.controlled_angle
-        self.cmd_vel.linear.x = -self.controlled_speed
-        self.move_cmd.publish(self.cmd_vel)
+        # self.cmd_vel.angular.z = self.controlled_angle
+        # # self.cmd_vel.linear.x = -self.controlled_speed
+        # self.move_cmd.publish(self.cmd_vel)
 
         rospy.loginfo(f"Control loop: Distance = {distance:.2f}, Path angle = {path_angle:.2f}, Controlled speed = {self.controlled_speed:.2f}, Controlled angle = {self.controlled_angle:.2f}")
 
@@ -134,25 +134,23 @@ class Dockpallet:
             rospy.loginfo("Docking approach")
 
             if 0 < abs(self.yaw_diff) <= 0.5:
-                self.controlled_angle = 0.0
-                self.controlled_speed = 0.0
 
                 self.cmd_vel.angular.z = 0.0
-                self.cmd_vel.linear.x = -0.1
+                self.cmd_vel.linear.x = -max_linear_speed
 
                 self.move_cmd.publish(self.cmd_vel)
                 rospy.loginfo("In the correct angle Range")
 
             else:
                 if self.yaw_diff > 0.6:
-                    self.cmd_vel.angular.z = -0.2
-                    self.cmd_vel.linear.x = 0.0
+                    self.cmd_vel.angular.z = -self.controlled_angle
+                    self.cmd_vel.linear.x = -max_linear_speed
 
                     self.move_cmd.publish(self.cmd_vel)
                     rospy.loginfo("Phase 1: Adjusting to the right")
                 elif self.yaw_diff < -0.6:
-                    self.cmd_vel.angular.z = 0.2
-                    self.cmd_vel.linear.x = 0.0
+                    self.cmd_vel.angular.z = self.controlled_angle
+                    self.cmd_vel.linear.x = -max_linear_speed
 
                     self.move_cmd.publish(self.cmd_vel)
                     rospy.loginfo("Phase 1: Adjusting to the left")
