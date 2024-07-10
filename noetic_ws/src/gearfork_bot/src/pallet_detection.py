@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import rospy
 import requests
-from geometry_msgs.msg import Transform
+import tf2_ros
+from geometry_msgs.msg import Transform, TransformStamped
 from std_msgs.msg import String
 
 class PalletDetection:
@@ -14,6 +15,12 @@ class PalletDetection:
         self.right = Transform()
         self.left = Transform()
         self.pallet_present = String()
+
+        self.tf_broadcaster = tf2_ros.TransformBroadcaster()
+        self.base_frame = 'odom'
+        self.center_frame = 'pallet_center'
+        self.left_pocket = 'left_pocket'
+        self.right_pocket = 'right_pocket'
         
         self.center_pub = rospy.Publisher("/pallet_center", Transform, queue_size=10)
         self.right_pub = rospy.Publisher("/pallet_right", Transform, queue_size=10)
@@ -44,6 +51,34 @@ class PalletDetection:
 
         rospy.loginfo(f"Left Pocket: {self.left.translation.x}-> Center Pocket {self.center.translation.x}<-{self.right.translation.x} Right Pocket : Pallet Presence ===> {pallet_present}")
 
+        tf_center = TransformStamped()
+        tf_center.header.stamp = rospy.Time.now()
+        tf_center.header.frame_id = self.base_frame
+        tf_center.child_frame_id = self.center_frame
+        tf_center.transform.translation.x = self.center.translation.x
+        tf_center.transform.translation.y = self.center.translation.y
+        tf_center.transform.translation.z = 0.0
+
+        tf_right = TransformStamped()
+        tf_right.header.stamp = rospy.Time.now()
+        tf_right.header.frame_id = self.base_frame
+        tf_right.child_frame_id = self.right_pocket
+        tf_right.transform.translation.x = self.right.translation.x
+        tf_right.transform.translation.y = self.right.translation.y
+        tf_right.transform.translation.z = 0.0   
+
+        tf_left = TransformStamped()
+        tf_left.header.stamp = rospy.Time.now()
+        tf_left.header.frame_id = self.base_frame
+        tf_left.child_frame_id = self.left_pocket
+        tf_left.transform.translation.x = self.left.translation.x
+        tf_left.transform.translation.y = self.left.translation.y
+        tf_left.transform.translation.z = 0.0
+        
+        self.tf_broadcaster.sendTransform(tf_center)
+        self.tf_broadcaster.sendTransform(tf_right)
+        self.tf_broadcaster.sendTransform(tf_left)
+
         self.pallet_present.data = str(pallet_present)
         self.pallet_presence_pub.publish(self.pallet_present)
 
@@ -52,7 +87,7 @@ class PalletDetection:
         self.left_pub.publish(self.left)
 
 def main():
-    pallet_detection = PalletDetection()
+    PalletDetection()
     rospy.spin()
     
 if __name__=='__main__':

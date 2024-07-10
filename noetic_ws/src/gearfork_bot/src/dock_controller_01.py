@@ -77,10 +77,9 @@ class Dockpallet:
         cv2.namedWindow('PID Tuning')
 
         cv2.createTrackbar('Kp Distance', 'PID Tuning', int(self.kp_distance * 100), 1000, self.nothing)
-        # cv2.createTrackbar('Ki Distance', 'PID Tuning', int(self.ki_distance * 100), 1000, self.nothing)
         cv2.createTrackbar('Kd Distance', 'PID Tuning', int(self.kd_distance * 100), 1000, self.nothing)
+        
         cv2.createTrackbar('Kp Angle', 'PID Tuning', int(self.kp_angle * 100), 1000, self.nothing)
-        # cv2.createTrackbar('Ki Angle', 'PID Tuning', int(self.ki_angle * 100), 1000, self.nothing)
         cv2.createTrackbar('Kd Angle', 'PID Tuning', int(self.kd_angle * 100), 1000, self.nothing)
 
         cv2.imshow('PID Tuning', np.zeros((1,1), dtype=np.uint8))
@@ -88,10 +87,9 @@ class Dockpallet:
 
     def update_pid_from_trackbars(self):
         self.kp_distance = cv2.getTrackbarPos('Kp Distance', 'PID Tuning') / 100.0
-        # self.ki_distance = cv2.getTrackbarPos('Ki Distance', 'PID Tuning') / 100.0
         self.kd_distance = cv2.getTrackbarPos('Kd Distance', 'PID Tuning') / 100.0
+        
         self.kp_angle = cv2.getTrackbarPos('Kp Angle', 'PID Tuning') / 100.0
-        # self.ki_angle = cv2.getTrackbarPos('Ki Angle', 'PID Tuning') / 100.0
         self.kd_angle = cv2.getTrackbarPos('Kd Angle', 'PID Tuning') / 100.0
 
     def nothing(self, x):
