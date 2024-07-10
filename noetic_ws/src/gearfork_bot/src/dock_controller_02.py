@@ -5,15 +5,14 @@ import rosparam
 import tf
 import cv2
 import numpy as np
-from math import sqrt, atan2, pi
+from math import sqrt, atan2, pi, cos, sin
 from geometry_msgs.msg import Twist
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 class DockPallet:
-    
+
     def __init__(self):
         rospy.init_node('pallet_dock', anonymous=True)
-
         rosparam.load_file('/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/config/pallet_docking_prams.yaml')
 
         self.pallet_x = 0.0
@@ -54,7 +53,7 @@ class DockPallet:
         self.rotation = 0.0
 
         self.threshold_distance = rosparam.get_param('/threshold_distance')
-        self.threshold_angle = rosparam.get_param('threshold_angle')
+        self.threshold_angle = rosparam.get_param('/threshold_angle')
 
         self.cmd_vel = Twist()
         self.steering_msg = JointTrajectory()
@@ -143,22 +142,23 @@ class DockPallet:
         max_linear_speed = 0.1
         max_angular_speed = 0.6
 
-        self.controlled_speed = round(abs(max(-max_linear_speed, min(max_linear_speed, self.controlled_speed))), 3)
-        self.controlled_angle = round(abs(max(-max_angular_speed, min(max_angular_speed, self.controlled_angle))), 2)
+        self.controlled_speed = max(-max_linear_speed, min(max_linear_speed, self.controlled_speed))
+        self.controlled_angle = max(-max_angular_speed, min(max_angular_speed, self.controlled_angle))
 
         self.previous_distance = distance
         self.previous_angle = path_angle
+
+        rospy.loginfo(f"Distance: {distance:.2f}, Path Angle Error: {path_angle:.2f}")
+        rospy.loginfo(f"Controlled Speed: {self.controlled_speed:.2f}, Controlled Angle: {self.controlled_angle:.2f}")
 
         if distance > 2.5:
             self.phase_1 = True
             self.phase_2 = False
             self.stop = False
-
         elif 0.5 < distance < 2.5:
             self.phase_1 = False
             self.phase_2 = True 
             self.stop = False
-
         else:
             self.phase_1 = False
             self.phase_2 = False
@@ -173,12 +173,13 @@ class DockPallet:
         if self.stop:
             self.execute_stop()
 
-        rospy.loginfo(f"Left Yaw: {self.left_} --Right Yaw: {self.right_} --Average: {self.average}")
-        rospy.loginfo(f"Controlled Angle: {self.controlled_angle}")
+        rospy.loginfo(f"Left Yaw: {self.left_} -- Right Yaw: {self.right_} -- Average: {self.average}")
         cv2.imshow('PID Tuning', np.zeros((1, 1), dtype=np.uint8))
         cv2.waitKey(1)
 
     def execute_phase_1(self):
+        rospy.loginfo("Executing Phase 1: Aligning with the center of the pallet")
+
         if self.path_angle_err < -pi/4 or self.path_angle_err > pi/4:
             if self.pallet_y < 0 and self.fork_y < self.pallet_y:
                 self.path_angle_err = -2 * pi + self.path_angle_err
@@ -190,19 +191,34 @@ class DockPallet:
         elif self.last_rotation < -pi + 0.1 and self.rotation > 0:
             self.rotation = -2 * pi + self.rotation
 
-        intermediate_x = (self.fork_x + self.pallet_x) / 2
-        intermediate_y = (self.fork_y + self.pallet_y) / 2
+        # Calculate intermediate point 2 meters away from the pallet center
+        intermediate_distance = 2.0
+        intermediate_x = self.pallet_x  * cos(self.pallet_angle)
+        intermediate_y = self.pallet_y  * sin(self.pallet_angle)
 
-        self.point_msg.positions = [self.controlled_angle]
+        # Update the path angle and distance to the intermediate point
+        path_angle_to_intermediate = atan2(intermediate_y - self.fork_y, intermediate_x - self.fork_x)
+        distance_to_intermediate = sqrt((intermediate_x - self.fork_x) ** 2 + (intermediate_y - self.fork_y) ** 2)
+
+        rospy.loginfo(f"Intermediate Target: ({intermediate_x}, {intermediate_y}), Distance: {distance_to_intermediate:.2f}, Path Angle: {path_angle_to_intermediate:.2f}")
+
+        # Calculate controlled speed and angle for aggressive alignment
+        self.controlled_speed = self.kp_distance * distance_to_intermediate
+        self.controlled_angle = self.kp_angle * (path_angle_to_intermediate - self.rotation)
+
+        # Cap the control inputs to ensure smooth motion
+        max_linear_speed = 0.1
+        max_angular_speed = 1.0
+        self.point_msg.positions = [max(-max_angular_speed, min(max_angular_speed, self.controlled_angle))]
         self.steering_msg.points = [self.point_msg]
-        self.cmd_vel.linear.x = -self.controlled_speed
-
+        self.cmd_vel.linear.x = -0.1
         self.move_cmd.publish(self.cmd_vel)
         self.steering_pub.publish(self.steering_msg)
 
+        self.last_rotation = self.rotation
+
     def execute_phase_2(self):
-        rospy.loginfo("Phase 2")
-        rospy.loginfo("Docking approach")
+        rospy.loginfo("Executing Phase 2: Aligning forks with the pallet pockets")
 
         if self.left_ < 0 and self.right_ < 0:
             if 0.0 < abs(self.average) < 0.05:
@@ -238,6 +254,7 @@ class DockPallet:
         self.point_msg.positions = [0.0]
         self.steering_msg.points = [self.point_msg]
         self.cmd_vel.linear.x = 0.0
+        self.cmd_vel.angular.z = 0.0
         self.move_cmd.publish(self.cmd_vel)
         self.steering_pub.publish(self.steering_msg)
 
@@ -271,13 +288,13 @@ class DockPallet:
         self.right_roller_angle = self.euler_from_quaternion(right_rot)
 
         self.distance = sqrt(pow(self.pallet_x - self.fork_x, 2) + pow(self.pallet_y - self.fork_y, 2))
-        self.path_angle_err = atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x) / pi
+        self.path_angle_err = atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x)
         self.path_angle = atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x)
 
         self.yaw_diff = self.path_angle_err
 
         angle_err_pallet = atan2(self.pallet_y, self.pallet_x)
-        angle_err_robot = atan2(self.fork_y, self.fork_x)
+        angle_err_robot = atan2(self.right_roller_y, self.right_roller_x)
 
         self.yaw_diff = self.path_angle_err - self.fork_angle
         self.path_angle_err = angle_err_pallet - angle_err_robot
