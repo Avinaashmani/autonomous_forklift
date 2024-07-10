@@ -15,7 +15,7 @@ class Controller:
         self.wheel_base = 1.0  # Assume a default value for the wheel base, adjust as needed
 
         rospy.Subscriber('cmd_vel', Twist, self.cmd_callback, queue_size=10)
-        self.linear_pub = rospy.Publisher('gearfork_bot/cmd_vel', Twist, queue_size=10)
+        self.linear_pub = rospy.Publisher('/gearfork_bot/cmd_vel', Twist, queue_size=10)
         self.steering_pub = rospy.Publisher('/gearfork_bot/steering_joint_controller/command', JointTrajectory, queue_size=10)
         rospy.loginfo("Steering Controller")
 
