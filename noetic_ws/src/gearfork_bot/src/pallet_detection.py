@@ -58,6 +58,8 @@ class PalletDetection:
         tf_center.transform.translation.x = self.center.translation.x
         tf_center.transform.translation.y = self.center.translation.y
         tf_center.transform.translation.z = 0.0
+        tf_center.transform.rotation.z = 1.0 
+        tf_center.transform.rotation.w = 0.0
 
         tf_right = TransformStamped()
         tf_right.header.stamp = rospy.Time.now()
@@ -65,7 +67,9 @@ class PalletDetection:
         tf_right.child_frame_id = self.right_pocket
         tf_right.transform.translation.x = self.right.translation.x
         tf_right.transform.translation.y = self.right.translation.y
-        tf_right.transform.translation.z = 0.0   
+        tf_right.transform.translation.z = 0.0 
+        tf_right.transform.rotation.z = 1.0 
+        tf_right.transform.rotation.w = 0.0  
 
         tf_left = TransformStamped()
         tf_left.header.stamp = rospy.Time.now()
@@ -74,6 +78,8 @@ class PalletDetection:
         tf_left.transform.translation.x = self.left.translation.x
         tf_left.transform.translation.y = self.left.translation.y
         tf_left.transform.translation.z = 0.0
+        tf_left.transform.rotation.z = 1.0 
+        tf_left.transform.rotation.w = 0.0
         
         self.tf_broadcaster.sendTransform(tf_center)
         self.tf_broadcaster.sendTransform(tf_right)
