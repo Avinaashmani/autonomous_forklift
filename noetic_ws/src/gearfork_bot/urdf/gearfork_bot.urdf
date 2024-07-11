@@ -157,7 +157,7 @@
       link="motor_link" />
     <axis
       xyz="0 0 1" />
-    <limit lower="-0.88" upper="0.88" effort="5" velocity="1.0"/>
+    <limit lower="-0.88" upper="0.88" effort="5" velocity="10.0"/>
   </joint>
 
 <transmission name="trans1">
