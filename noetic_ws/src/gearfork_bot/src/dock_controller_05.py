@@ -67,10 +67,10 @@ class DockPallet:
 
             elif quadrant == 2:
                 self.quad_b()
-        
-        else:
+
+        if abs(self.fork_y) < 1.0:
             self.dock()
-    
+        
     def check_orientation(self):
         
         distance_ = self.fork_y
@@ -85,13 +85,14 @@ class DockPallet:
         if 1.8 <= abs(angle_) <= 3.14:
             if distance_ > 0:
                 self.quad_value = 3
+
             elif distance_ < 0:
                 self.quad_value = 4
         
         return self.quad_value
 
     def quad_a(self):
-        rospy.loginfo("In Quadrant 1")
+        rospy.loginfo("In Quadrant A")
 
         self.update_tf_data()
 
@@ -128,60 +129,29 @@ class DockPallet:
 
             time.sleep(1)
 
-            if abs(self.fork_y) > 1.0:
+            if abs(self.fork_y) > 0.9:
                 rospy.loginfo("Moving forward")
                 self.cmd_vel.linear.x = -0.3
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
 
             else:
+                time.sleep(3)
                 rospy.loginfo("Target reached, stopping")
                 self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
-            self.state = 'start'
-
-        elif self.state == 'start':
-
-            rospy.loginfo("Docking Sarted...")
-
-            if not 0.0 <= angle_ <= 0.05 and distance_ > 0.3:
-                self.cmd_vel.linear.x = -0.3
-                if self.fork_angle > 0:
-                    self.cmd_vel.angular.z = -((1.45 - angle_) * self.kp_angle)
-                else:
-                    self.cmd_vel.angular.z = ((1.45 - angle_) * self.kp_angle)
-                self.move_cmd.publish(self.cmd_vel)
-            
-            else:
-                rospy.loginfo("Angle aligned, stopping to reset steering")
-                self.cmd_vel.linear.x = 0.0
-                self.cmd_vel.angular.z = 0.0
-                self.move_cmd.publish(self.cmd_vel)
-                rospy.sleep(2)  # Wait for steering to return to zero position
-                self.state = 'move_to_pallet'
-        
-        elif self.state == 'move_to_pallet':
-
-            self.cmd_vel.angular.z = 0.0
-            self.move_cmd.publish(self.cmd_vel)
-            time.sleep(1)
-
-            if abs(self.distance) > 0.3:
-                rospy.loginfo("Moving forward")
-                self.cmd_vel.linear.x = -0.3
-                self.cmd_vel.angular.z = 0.0
-                self.move_cmd.publish(self.cmd_vel)
-            self.state = 'stop'
+                self.state = 'stop'
 
         elif self.state == 'stop':
+            time.sleep(3)
             rospy.loginfo("Docking process complete")
             self.cmd_vel.linear.x = 0.0
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
 
     def quad_b(self):
-        rospy.loginfo("In Quadrant 2")
+        rospy.loginfo("In Quadrant B")
 
         self.update_tf_data()
 
@@ -189,11 +159,11 @@ class DockPallet:
         angle_ = abs(self.fork_angle)
         distance_ = abs(self.distance)
 
-        if not hasattr(self, 'state'):
-            self.state = 'align'
+        if not hasattr(self, 'b_state'):
+            self.b_state = 'align'
 
-        if self.state == 'align':
-
+        if self.b_state == 'align':
+            # Align the robot's angle between 1.4 and 1.7 radians
             if not (1.4 <= angle_ <= 1.7) and distance_y > 1.0:
                 rospy.loginfo("Aligning angle")
                 self.cmd_vel.linear.x = -0.3
@@ -209,12 +179,13 @@ class DockPallet:
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
                 rospy.sleep(2)  # Wait for steering to return to zero position
-                self.state = 'move_forward'
+                self.b_state = 'move_forward'
 
-        elif self.state == 'move_forward':
+        elif self.b_state == 'move_forward':
 
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
+
             time.sleep(1)
 
             if abs(self.fork_y) > 1.0:
@@ -222,86 +193,81 @@ class DockPallet:
                 self.cmd_vel.linear.x = -0.3
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
-                
+
             else:
+                time.sleep(3)
                 rospy.loginfo("Target reached, stopping")
                 self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
-                self.state = 'stop'
+                self.b_state = 'stop'
 
-        elif self.state == 'stop':
-            rospy.loginfo("Aligned...")
+        elif self.b_state == 'stop':
+            time.sleep(3)
+            rospy.loginfo("Docking process complete")
             self.cmd_vel.linear.x = 0.0
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
-
+    
     def dock(self):
-        rospy.loginfo("Docking Function")
-
         self.update_tf_data()
 
         distance_y = abs(self.fork_y)
         angle_ = abs(self.fork_angle)
-        distance_ = abs(self.distance)
+        distance_ = abs(self.pallet_x)
 
-        if not hasattr(self, 'state'):
-            self.state = 'align'
+        if not hasattr(self, 'docking_state'):
+            self.docking_state = 'align'  # Ensure the initial state is set to 'align'
 
-        if self.state == 'align':
+        rospy.loginfo(f"Current docking state: {self.docking_state}")
+        rospy.loginfo(f"Fork Y: {distance_y}, Fork Angle: {self.fork_angle}, Distance: {distance_}")
 
-            if (1.4 <= angle_ <= 1.7) and distance_y < 1.0:
+        if self.docking_state == 'align':
+            rospy.loginfo("Docking State: Align")
+            if not 0.0 <= angle_ <= 0.05 and distance_y < 1.0:
                 rospy.loginfo("Aligning angle")
-                self.cmd_vel.linear.x = -0.3
-                if self.fork_angle > 0:
-                    self.cmd_vel.angular.z = -((1.45 - angle_) * self.kp_angle)
-                else:
-                    self.cmd_vel.angular.z = ((1.45 - angle_) * self.kp_angle)
-                self.move_cmd.publish(self.cmd_vel)
+                self.cmd_vel.linear.x = -0.2
 
+                if self.fork_angle > 0:
+                    self.cmd_vel.angular.z = ((angle_) * self.kp_angle)
+                
+                else:
+                    self.cmd_vel.angular.z = -((angle_) * self.kp_angle)
+
+                self.move_cmd.publish(self.cmd_vel)
             else:
                 rospy.loginfo("Angle aligned, stopping to reset steering")
-                self.cmd_vel.linear.x = 0.0
+                # self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
-                rospy.sleep(2)  # Wait for steering to return to zero position
-                self.state = 'move_forward'
+                rospy.sleep(2)
+                self.docking_state = 'move_forward'
 
-        elif self.state == 'move_forward':
+        elif self.docking_state == 'move_forward':
 
+            rospy.loginfo("Docking State: Move Forward")
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
-            time.sleep(1)
+            rospy.sleep(1)
 
-            if distance_ > 0.3:
+            if distance_ > 0.5:
                 rospy.loginfo("Moving forward")
-                self.cmd_vel.linear.x = -0.3
+                self.cmd_vel.linear.x = -0.2
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
-                
-            else:
+
+            elif distance_ < 0.5:
                 rospy.loginfo("Target reached, stopping")
                 self.cmd_vel.linear.x = 0.0
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
-                self.state = 'stop'
+                self.docking_state = 'stop'
 
-        elif self.state == 'stop':
-            rospy.loginfo("Aligned...")
+        elif self.docking_state == 'stop':
+            rospy.loginfo("Docking State: Stop")
             self.cmd_vel.linear.x = 0.0
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
-
-    def execute_stop(self):
-        rospy.loginfo("Executing Stop: Pallet docking complete")
-        self.cmd_vel.linear.x = 0.0
-        self.cmd_vel.angular.z = 0.0
-        self.move_cmd.publish(self.cmd_vel)
-
-        self.point_msg.positions = [0.0]
-        self.point_msg.time_from_start = rospy.Duration(0.5)
-        self.steering_msg.points = [self.point_msg]
-        self.steering_pub.publish(self.steering_msg)
 
     def on_shutdown(self):
         rospy.loginfo("Shutting down DockPallet node")
@@ -311,11 +277,6 @@ class DockPallet:
         self.cmd_vel.angular.z = 0.0
         self.move_cmd.publish(self.cmd_vel)
 
-        self.point_msg.positions = [0.0]
-        self.point_msg.time_from_start = rospy.Duration(0.5)
-        self.steering_msg.points = [self.point_msg]
-        self.steering_pub.publish(self.steering_msg)
-        
         rospy.loginfo("DockPallet node shutdown complete")
 
     def update_tf_data(self):
@@ -336,9 +297,9 @@ class DockPallet:
             self.path_angle_err = abs(atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x)) - abs(self.fork_angle)
             self.intermediate_path_angle = atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x) - self.fork_angle
 
-            rospy.loginfo(f"TF Data - Fork X: {self.fork_x}, Y: {self.fork_y}, Angle: {self.fork_angle}")
+            # rospy.loginfo(f"TF Data - Fork X: {self.fork_x}, Y: {self.fork_y}, Angle: {self.fork_angle}")
             # rospy.loginfo(f"TF Data - Pallet X: {self.pallet_x}, Y: {self.pallet_y}, Angle: {self.pallet_angle}")
-            # rospy.loginfo(f"Distance to Pallet: {self.distance}, Path Angle Error: {self.path_angle_err}")
+            # rospy.loginfo(f"Distance to Pallet: {self.distance}")
 
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
             rospy.logwarn("Failed to get TF data. Retrying...")
