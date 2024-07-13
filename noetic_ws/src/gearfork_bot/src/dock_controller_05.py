@@ -127,9 +127,9 @@ class DockPallet:
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
 
-            time.sleep(1)
+            time.sleep(0.7)
 
-            if abs(self.fork_y) > 0.9:
+            if abs(self.fork_y) > 1.0:
                 rospy.loginfo("Moving forward")
                 self.cmd_vel.linear.x = -0.3
                 self.cmd_vel.angular.z = 0.0
@@ -182,18 +182,15 @@ class DockPallet:
                 self.b_state = 'move_forward'
 
         elif self.b_state == 'move_forward':
-
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
-
-            time.sleep(1)
+            time.sleep(0.7)
 
             if abs(self.fork_y) > 1.0:
                 rospy.loginfo("Moving forward")
                 self.cmd_vel.linear.x = -0.3
                 self.cmd_vel.angular.z = 0.0
                 self.move_cmd.publish(self.cmd_vel)
-
             else:
                 time.sleep(3)
                 rospy.loginfo("Target reached, stopping")
@@ -208,6 +205,7 @@ class DockPallet:
             self.cmd_vel.linear.x = 0.0
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
+
     
     def dock(self):
         self.update_tf_data()
