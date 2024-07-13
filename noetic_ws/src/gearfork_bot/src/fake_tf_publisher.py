@@ -25,7 +25,7 @@ class PalletTF:
             tf1.child_frame_id = self.child_frame
 
             # Set translation
-            tf1.transform.translation.x = -2.0
+            tf1.transform.translation.x = -4.0
             tf1.transform.translation.y = 0.2
             tf1.transform.translation.z = 0.0
 
@@ -39,7 +39,7 @@ class PalletTF:
             tf2.child_frame_id = self.left_pocket
 
             # Set translation
-            tf2.transform.translation.x = -2.0
+            tf2.transform.translation.x = -4.0
             tf2.transform.translation.y = -0.18
             tf2.transform.translation.z = 0.0
 
@@ -52,7 +52,7 @@ class PalletTF:
             tf3.header.frame_id = self.base_frame
             tf3.child_frame_id = self.right_pocket
             # Set translation
-            tf3.transform.translation.x = -2.0
+            tf3.transform.translation.x = -4.0
             tf3.transform.translation.y = 0.0
             tf3.transform.translation.z = 0.0
 
