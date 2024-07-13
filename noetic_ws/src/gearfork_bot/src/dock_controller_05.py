@@ -237,7 +237,7 @@ class DockPallet:
             self.move_cmd.publish(self.cmd_vel)
 
     def dock(self):
-        rospy.loginfo("In Quadrant 2")
+        rospy.loginfo("Docking Function")
 
         self.update_tf_data()
 
