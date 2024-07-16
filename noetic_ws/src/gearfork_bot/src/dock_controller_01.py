@@ -214,85 +214,66 @@ class DockPallet:
             else:
                 self.point_msg.positions = [-self.controlled_angle]
                 self.steering_msg.points = [self.point_msg]
-                self.cmd_vel.linear.x = -0.1
+                self.cmd_vel.linear.x = -self.controlled_speed
                 self.move_cmd.publish(self.cmd_vel)
                 self.steering_pub.publish(self.steering_msg)
-        elif self.left_ > 0 and self.right_ > 0:
-            if 0.0 < abs(self.average) < 0.05:
-                self.point_msg.positions = [0.0]
-                self.steering_msg.points = [self.point_msg]
-                self.cmd_vel.linear.x = -0.1
-                self.move_cmd.publish(self.cmd_vel)
-                self.steering_pub.publish(self.steering_msg)
-            else:
-                self.point_msg.positions = [self.controlled_angle]
-                self.steering_msg.points = [self.point_msg]
-                self.cmd_vel.linear.x = -0.1
-                self.move_cmd.publish(self.cmd_vel)
-                self.steering_pub.publish(self.steering_msg)
+        else:
+            self.point_msg.positions = [self.controlled_angle]
+            self.steering_msg.points = [self.point_msg]
+            self.cmd_vel.linear.x = -self.controlled_speed
+            self.move_cmd.publish(self.cmd_vel)
+            self.steering_pub.publish(self.steering_msg)
 
     def execute_stop(self):
-        rospy.loginfo("Fork Stopped")
-        rospy.loginfo("Docking Completed -( ^__^ )- ")
+        rospy.loginfo("Reached")
 
+        self.cmd_vel.linear.x = 0.0
+        self.cmd_vel.angular.z = 0.0
         self.point_msg.positions = [0.0]
         self.steering_msg.points = [self.point_msg]
-        self.cmd_vel.linear.x = 0.0
+        
         self.move_cmd.publish(self.cmd_vel)
         self.steering_pub.publish(self.steering_msg)
 
     def update_tf_data(self):
         try:
-            (pallet_trans, pallet_rot) = self.tf_listener.lookupTransform('/odom', '/pallet_center', rospy.Time(0))
-            (fork_trans, fork_rot) = self.tf_listener.lookupTransform('/odom', '/base_link', rospy.Time(0))
-            (right_trans, right_rot) = self.tf_listener.lookupTransform('/rroller_link', '/right_pocket', rospy.Time(0))
-            (left_trans, left_rot) = self.tf_listener.lookupTransform('/lroller_link', '/left_pocket', rospy.Time(0))
+            (trans, rot) = self.tf_listener.lookupTransform('/pallet', '/fork', rospy.Time(0))
+            self.fork_x = trans[0]
+            self.fork_y = trans[1]
 
-            self.update_frame(pallet_trans, pallet_rot, fork_trans, fork_rot, left_trans, left_rot, right_trans, right_rot)
-        except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException) as e:
-            rospy.logwarn("LookupException: " + str(e))
+            (pallet_trans, pallet_rot) = self.tf_listener.lookupTransform('/map', '/pallet', rospy.Time(0))
+            self.pallet_x = pallet_trans[0]
+            self.pallet_y = pallet_trans[1]
 
-    def update_frame(self, pallet_trans, pallet_rot, fork_trans, fork_rot, left_trans, left_rot, right_trans, right_rot):
-        self.pallet_x = pallet_trans[0]
-        self.pallet_y = pallet_trans[1]
-        self.pallet_angle = self.euler_from_quaternion(pallet_rot)
-        self.rotation = self.pallet_angle
+            self.rotation = tf.transformations.euler_from_quaternion(rot)[2] # type: ignore
+            self.last_rotation = self.rotation
 
-        self.fork_x = fork_trans[0]
-        self.fork_y = fork_trans[1]
-        self.fork_angle = self.euler_from_quaternion(fork_rot)
+            self.distance = sqrt(self.fork_x ** 2 + self.fork_y ** 2)
+            self.path_angle_err = atan2(self.fork_y, self.fork_x)
 
-        self.left_roller_x = left_trans[0]
-        self.left_roller_y = left_trans[1]
-        self.left_roller_angle = self.euler_from_quaternion(left_rot)
+            if self.fork_y < 0:
+                self.path_angle_err = -self.path_angle_err
 
-        self.right_roller_x = right_trans[0]
-        self.right_roller_y = right_trans[1]
-        self.right_roller_angle = self.euler_from_quaternion(right_rot)
+            (left_roller_trans, left_roller_rot) = self.tf_listener.lookupTransform('/map', '/left_roller', rospy.Time(0))
+            self.left_roller_x = left_roller_trans[0]
+            self.left_roller_y = left_roller_trans[1]
+            self.left_roller_angle = tf.transformations.euler_from_quaternion(left_roller_rot)[2]
+            self.left_ = self.left_roller_angle
 
-        self.distance = sqrt(pow(self.pallet_x - self.fork_x, 2) + pow(self.pallet_y - self.fork_y, 2))
-        self.path_angle_err = atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x) / pi
-        self.path_angle = atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x)
+            (right_roller_trans, right_roller_rot) = self.tf_listener.lookupTransform('/map', '/right_roller', rospy.Time(0))
+            self.right_roller_x = right_roller_trans[0]
+            self.right_roller_y = right_roller_trans[1]
+            self.right_roller_angle = tf.transformations.euler_from_quaternion(right_roller_rot)[2]
+            self.right_ = self.right_roller_angle
 
-        self.yaw_diff = self.path_angle_err
+            self.average = (self.left_ + self.right_) / 2.0
 
-        angle_err_pallet = atan2(self.pallet_y, self.pallet_x)
-        angle_err_robot = atan2(self.fork_y, self.fork_x)
+        except tf.Exception as e:
+            rospy.logerr("Failed to get TF data: %s", e)
 
-        self.yaw_diff = self.path_angle_err - self.fork_angle
-        self.path_angle_err = angle_err_pallet - angle_err_robot
-
-        self.left_ = round(self.left_roller_angle, 4)
-        self.right_ = round(self.right_roller_angle, 4)
-        self.average = (self.left_ + self.right_) / 2
-
-    def euler_from_quaternion(self, quaternion):
-        (roll, pitch, yaw) = tf.transformations.euler_from_quaternion(quaternion)
-        return yaw
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
-        dock_pallet = DockPallet()
+        DockPallet()
         rospy.spin()
     except rospy.ROSInterruptException:
-        rospy.loginfo("Pallet docking terminated.")
+        rospy.loginfo("DockPallet node terminated.")

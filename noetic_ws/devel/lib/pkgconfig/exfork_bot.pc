@@ -1,1 +1,0 @@
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/exfork_bot/lib/pkgconfig/exfork_bot.pc

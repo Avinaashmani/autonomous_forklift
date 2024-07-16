@@ -1,8 +1,0 @@
-prefix=/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/exfork_bot
-
-Name: exfork_bot
-Description: Description of exfork_bot
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

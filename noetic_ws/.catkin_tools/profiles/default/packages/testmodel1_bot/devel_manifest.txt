@@ -1,5 +1,0 @@
-testmodel1_bot
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/testmodel1_bot/cmake.lock /home/avinaash/autonomous_forklift/noetic_ws/devel/./cmake.lock
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/testmodel1_bot/lib/pkgconfig/testmodel1_bot.pc /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/testmodel1_bot.pc
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/testmodel1_bot/share/testmodel1_bot/cmake/testmodel1_botConfig.cmake /home/avinaash/autonomous_forklift/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig.cmake
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/testmodel1_bot/share/testmodel1_bot/cmake/testmodel1_botConfig-version.cmake /home/avinaash/autonomous_forklift/noetic_ws/devel/share/testmodel1_bot/cmake/testmodel1_botConfig-version.cmake

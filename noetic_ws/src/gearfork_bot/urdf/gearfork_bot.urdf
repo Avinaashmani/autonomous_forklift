@@ -353,7 +353,7 @@
       xyz="0 0 1" />
   </joint>
 
-  <gazebo reference="laser_link">
+  <!-- <gazebo reference="laser_link">
     <material>Gazebo/FlatBlack</material>
     <sensor type="ray" name="lds_lfcd_sensor">
       <pose>0 0 0 0 0 0</pose>
@@ -386,7 +386,7 @@
         <frameName>laser_link</frameName>
       </plugin>
     </sensor>
-  </gazebo>
+  </gazebo> -->
 
 <!-- LEFT ROLLER LINK -->
 

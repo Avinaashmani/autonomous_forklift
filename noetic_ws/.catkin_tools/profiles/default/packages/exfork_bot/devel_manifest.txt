@@ -1,5 +1,0 @@
-exfork_bot
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/exfork_bot/cmake.lock /home/avinaash/autonomous_forklift/noetic_ws/devel/./cmake.lock
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/exfork_bot/lib/pkgconfig/exfork_bot.pc /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/exfork_bot.pc
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/exfork_bot/share/exfork_bot/cmake/exfork_botConfig-version.cmake /home/avinaash/autonomous_forklift/noetic_ws/devel/share/exfork_bot/cmake/exfork_botConfig-version.cmake
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/exfork_bot/share/exfork_bot/cmake/exfork_botConfig.cmake /home/avinaash/autonomous_forklift/noetic_ws/devel/share/exfork_bot/cmake/exfork_botConfig.cmake

@@ -1,0 +1,11 @@
+Header header
+float64 angular_vel
+float64 linear_vel
+float64 kp_dist
+float64 kd_dist
+float64 kp_angle
+float64 kd_angle
+float64 y_offset
+float64 fork_angle
+float64 dist_2_pallet
+string docking_stage

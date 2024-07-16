@@ -1,1 +1,0 @@
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/tricycle_test_bot_1/share/tricycle_test_bot_1/cmake/tricycle_test_bot_1Config-version.cmake

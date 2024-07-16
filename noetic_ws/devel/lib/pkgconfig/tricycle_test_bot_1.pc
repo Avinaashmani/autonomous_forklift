@@ -1,1 +1,0 @@
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/tricycle_test_bot_1/lib/pkgconfig/tricycle_test_bot_1.pc

@@ -1,2 +1,0 @@
-ros_controllers/ros_controllers
-/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/ros_controllers/cmake.lock /home/avinaash/autonomous_forklift/noetic_ws/devel/./cmake.lock
