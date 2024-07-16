@@ -236,12 +236,13 @@ class DockPallet:
         angle_ = self.fork_angle  
         distance_ = self.pallet_x  
 
-        kp_dist = angle_ 
-        kd_dist = 1.0
-        
-        kp_angle = distance_y /5
-        kd_angle = 0.05
-        
+        # Adjusted gains based on previous observations
+        kp_dist = 0.09  # Reduced for better control
+        kd_dist = 0.1  # Reduced for less aggressive response
+
+        kp_angle = distance_y  # Keeping the y offset as the proportional gain for angle
+        kd_angle = 0.02  # Reduced for smoother angular control
+
         if not hasattr(self, 'docking_state'):
             self.docking_state = 'align'
 
@@ -255,54 +256,39 @@ class DockPallet:
         derivative_dist = (error_dist - self.prev_error_dist)
 
         error_angle = angle_ - distance_y
-        derivative_angle = (error_angle - self.prev_error_angle) / 0.1
+        derivative_angle = (error_angle - self.prev_error_angle)
 
         controlled_speed = abs(round(kp_dist * error_dist + kd_dist * derivative_dist, 3))
         controlled_angle = round(kp_angle * error_angle + kd_angle * derivative_angle, 4)
 
         rospy.loginfo(f"Fork Y: {distance_y} Speed: {distance_y * 0.5}")
         rospy.loginfo(f"Angle: {controlled_angle}")
-        rospy.loginfo(f"Speed {controlled_speed * 10}")
+        rospy.loginfo(f"Speed {controlled_speed }")
         
         if self.docking_state == 'align':
-
-            if abs(distance_y) > 0.098:
-                
+            if abs(distance_y) > 0.1:
                 if distance_y > 0:
                     self.cmd_vel.linear.x = -controlled_speed  
                     self.cmd_vel.angular.z += controlled_angle  
                     self.move_cmd.publish(self.cmd_vel)
-
                 elif distance_y < 0:                                             
                     self.cmd_vel.linear.x = -controlled_speed  
                     self.cmd_vel.angular.z -= controlled_angle  
                     self.move_cmd.publish(self.cmd_vel)                      
-
-                # self.move_cmd.publish(self.cmd_vel)
-
             elif distance_y < 0.03:
-
                 self.docking_state = 'move_forward'
 
         elif self.docking_state == 'move_forward':
             self.cmd_vel.angular.z = 0.0
             self.move_cmd.publish(self.cmd_vel)
-
             if abs(distance_) > 0.5:
                 rospy.loginfo("Moving forward")
+                self.cmd_vel.linear.x = -0.15 
 
-                self.cmd_vel.linear.x = -0.2
                 if not 0.0 <= abs(self.fork_angle) <= 0.05:
-                    # if angle_ > 0:
-                    #     self.cmd_vel.angular.z = controlled_angle
-
-                    # elif angle_ < 0:
-                    #     self.cmd_vel.angular.z = controlled_angle
-                    # self.move_cmd.publish(self.cmd_vel)
-
-                    self.cmd_vel.angular.z = controlled_angle *  10
+                    self.cmd_vel.angular.z = controlled_angle * 2
                     self.move_cmd.publish(self.cmd_vel)
-
+                
                 else:
                     self.cmd_vel.angular.z = 0.0
                     self.move_cmd.publish(self.cmd_vel)
