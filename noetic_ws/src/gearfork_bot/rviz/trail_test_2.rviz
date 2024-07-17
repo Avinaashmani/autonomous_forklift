@@ -25,7 +25,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -260,5 +260,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1756
-  X: 1082
-  Y: 255
+  X: 1045
+  Y: 444

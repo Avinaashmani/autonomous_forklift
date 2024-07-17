@@ -231,14 +231,14 @@ class DockPallet:
         angle_ = self.fork_angle  
         distance_ = self.pallet_x  
 
-        kp_dist = abs(distance_) / 10
-        kd_dist = abs(distance_y ) 
+        kp_dist = distance_ / 10
+        kd_dist = distance_y 
 
         kp_dist_dock = 0.1
         kd_dist_dock = distance_y
 
-        kp_angle = abs(distance_y)/ 15 
-        kd_angle = 0.01
+        kp_angle = distance_y/ 15 
+        kd_angle = angle_
         
         kp_angle_dock = distance_y * 2.0 
         kd_angle_dock = angle_
@@ -260,6 +260,9 @@ class DockPallet:
 
         controlled_speed = abs(round(self.kp_dist * error_dist + self.kd_dist * derivative_dist, 3))
         controlled_angle = round(kp_angle * error_angle + kd_angle * derivative_angle, 4)
+
+        controlled_speed = max(min(controlled_speed, 1.57), -1.57)
+        controlled_angle = max(min(controlled_angle, 1.57), -1.57)
 
         if abs(controlled_angle) > 1.57:
             controlled_angle = 1.57
@@ -300,12 +303,12 @@ class DockPallet:
                     self.cmd_vel.angular.z -= controlled_angle  
                     self.move_cmd.publish(self.cmd_vel)        
 
-            elif distance_y < 0.5:
+            elif abs(distance_y) < 0.15:
                 self.docking_state = 'move_forward'
 
         elif self.docking_state == 'move_forward':
-            self.cmd_vel.angular.z = 0.0
-            self.move_cmd.publish(self.cmd_vel)
+            # self.cmd_vel.angular.z = 0.0
+            # self.move_cmd.publish(self.cmd_vel)
 
             if abs(distance_) > 0.1:
                 rospy.loginfo("Moving forward")
@@ -355,7 +358,7 @@ class DockPallet:
             self.fork_angle = round(euler_from_quaternion(rot_fork)[2], 3)
 
             self.distance = sqrt((self.pallet_x - self.fork_x) ** 2 + (self.pallet_y - self.fork_y) ** 2)
-            self.intermediate_distance = sqrt(((self.pallet_x + 3.0) - self.fork_x) ** 2 + (self.pallet_y - self.fork_y) ** 2)
+            self.intermediate_distance = sqrt(((self.pallet_x + 2.0) - self.fork_x) ** 2 + (self.pallet_y - self.fork_y) ** 2)
 
             self.path_angle_err = abs(atan2(self.fork_y - self.pallet_y, self.fork_x - self.pallet_x)) - self.fork_angle
             self.intermediate_path_angle = atan2(self.pallet_y - self.fork_y, self.pallet_x - self.fork_x) - self.fork_angle
