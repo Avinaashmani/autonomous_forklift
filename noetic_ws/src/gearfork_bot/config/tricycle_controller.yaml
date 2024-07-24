@@ -1,0 +1,9 @@
+gearfork_bot:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 10
+    joint: motor_joint
+
+  steering_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints: [motor_joint]

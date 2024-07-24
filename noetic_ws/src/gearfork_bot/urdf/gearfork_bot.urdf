@@ -26,7 +26,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/base_footprint.STL" />
+          filename="package://gearfork_bot/meshes/base_footprint.STL" />
       </geometry>
       <material
         name="">
@@ -40,10 +40,13 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/base_footprint.STL" />
+          filename="package://gearfork_bot/meshes/base_footprint.STL" />
       </geometry>
     </collision>
   </link>
+
+<!-- BASE LINK -->
+
   <link
     name="base_link">
     <inertial>
@@ -66,7 +69,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/base_link.STL" />
+          filename="package://gearfork_bot/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -80,10 +83,11 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/base_link.STL" />
+          filename="package://gearfork_bot/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
+
   <joint
     name="base_joint"
     type="fixed">
@@ -97,6 +101,9 @@
     <axis
       xyz="0 0 0" />
   </joint>
+
+<!-- STEERING LINK -->
+
   <link
     name="motor_link">
     <inertial>
@@ -119,7 +126,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/motor_link.STL" />
+          filename="package://gearfork_bot/meshes/motor_link.STL" />
       </geometry>
       <material
         name="">
@@ -133,13 +140,14 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/motor_link.STL" />
+          filename="package://gearfork_bot/meshes/motor_link.STL" />
       </geometry>
     </collision>
   </link>
+
   <joint
     name="motor_joint"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0.6 0 0.287"
       rpy="0 0 0" />
@@ -149,7 +157,33 @@
       link="motor_link" />
     <axis
       xyz="0 0 1" />
+    <limit lower="-0.88" upper="0.88" effort="5" velocity="10.0"/>
   </joint>
+
+<transmission name="trans1">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="motor_joint">
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="motor1">
+    <mechanicalReduction>1.0</mechanicalReduction>
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </actuator>
+
+</transmission>
+
+<gazebo>
+
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/gearfork_bot</robotNamespace>
+  </plugin>
+  
+</gazebo>
+
+      <!-- WHEEL LINK -->
+
   <link
     name="wheel_link">
     <inertial>
@@ -172,7 +206,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/wheel_link.STL" />
+          filename="package://gearfork_bot/meshes/wheel_link.STL" />
       </geometry>
       <material
         name="">
@@ -186,10 +220,11 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/wheel_link.STL" />
+          filename="package://gearfork_bot/meshes/wheel_link.STL" />
       </geometry>
     </collision>
   </link>
+
   <joint
     name="wheel_joint"
     type="continuous">
@@ -201,8 +236,11 @@
     <child
       link="wheel_link" />
     <axis
-      xyz="0.0062645 -0.99998 0" />
+      xyz="0.0062645 0.99998 0" />
   </joint>
+
+      <!-- STEERING JOINT -->
+
   <link
     name="steering_link">
     <inertial>
@@ -225,7 +263,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/steering_link.STL" />
+          filename="package://gearfork_bot/meshes/steering_link.STL" />
       </geometry>
       <material
         name="">
@@ -239,10 +277,11 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/steering_link.STL" />
+          filename="package://gearfork_bot/meshes/steering_link.STL" />
       </geometry>
     </collision>
   </link>
+
   <joint
     name="steering_joint"
     type="continuous">
@@ -256,6 +295,9 @@
     <axis
       xyz="0 0 1" />
   </joint>
+
+      <!-- LASER LINK -->
+
   <link
     name="laser_link">
     <inertial>
@@ -278,7 +320,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/laser_link.STL" />
+          filename="package://gearfork_bot/meshes/laser_link.STL" />
       </geometry>
       <material
         name="">
@@ -292,10 +334,11 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/laser_link.STL" />
+          filename="package://gearfork_bot/meshes/laser_link.STL" />
       </geometry>
     </collision>
   </link>
+
   <joint
     name="laser_joint"
     type="fixed">
@@ -309,6 +352,44 @@
     <axis
       xyz="0 0 1" />
   </joint>
+
+  <!-- <gazebo reference="laser_link">
+    <material>Gazebo/FlatBlack</material>
+    <sensor type="ray" name="lds_lfcd_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+
+          <horizontal>
+            <samples>760</samples>
+            <resolution>1</resolution>
+            <min_angle>-2.2</min_angle>
+            <max_angle>1.57</max_angle>
+          </horizontal>
+
+        </scan>
+        <range>
+          <min>0.120</min>
+          <max>3.5</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>laser_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo> -->
+
+<!-- LEFT ROLLER LINK -->
+
   <link
     name="lroller_link">
     <inertial>
@@ -331,7 +412,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/lroller_link.STL" />
+          filename="package://gearfork_bot/meshes/lroller_link.STL" />
       </geometry>
       <material
         name="">
@@ -345,10 +426,11 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/lroller_link.STL" />
+          filename="package://gearfork_bot/meshes/lroller_link.STL" />
       </geometry>
     </collision>
   </link>
+
   <joint
     name="lroller_joint"
     type="continuous">
@@ -364,6 +446,9 @@
     <dynamics
       friction="0.1" />
   </joint>
+
+<!-- RIGHT ROLLER LINK -->
+
   <link
     name="rroller_link">
     <inertial>
@@ -386,7 +471,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/rroller_link.STL" />
+          filename="package://gearfork_bot/meshes/rroller_link.STL" />
       </geometry>
       <material
         name="">
@@ -400,10 +485,11 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://uv_bot_description/gearfork_bot/meshes/rroller_link.STL" />
+          filename="package://gearfork_bot/meshes/rroller_link.STL" />
       </geometry>
     </collision>
   </link>
+
   <joint
     name="rroller_joint"
     type="continuous">
@@ -419,4 +505,5 @@
     <dynamics
       friction="0.1" />
   </joint>
+
 </robot>
