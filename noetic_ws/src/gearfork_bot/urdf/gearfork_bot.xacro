@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="gearfork_bot">
+  <link
+    name="base_footprint">
+    <inertial>
+      <origin
+        xyz="-1.66533453693773E-16 -1.11022302462516E-16 0.0150000000000097"
+        rpy="0 0 0" />
+      <mass
+        value="9.42477796076939E-05" />
+      <inertia
+        ixx="7.09214541547898E-09"
+        ixy="1.07638717384255E-56"
+        ixz="-2.73196242009685E-42"
+        iyy="7.09214541547898E-09"
+        iyz="2.54645439948029E-23"
+        izz="4.71238898038469E-11" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/base_footprint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/base_footprint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.332083153374593 -0.00331447649651206 0.192922352383313"
+        rpy="0 0 0" />
+      <mass
+        value="6.82953904074599" />
+      <inertia
+        ixx="0.240406964793965"
+        ixy="0.012996572440763"
+        ixz="-0.196549425056795"
+        iyy="0.857443539684563"
+        iyz="-0.000466640574438609"
+        izz="0.919203079251692" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.035"
+      rpy="0 0 0" />
+    <parent
+      link="base_footprint" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="motor_link">
+    <inertial>
+      <origin
+        xyz="0.0305449765313153 -0.0516187176938839 -0.152664460739497"
+        rpy="0 0 0" />
+      <mass
+        value="3.62949819437905" />
+      <inertia
+        ixx="0.020873193105549"
+        ixy="0.00122762908427952"
+        ixz="8.16486496202453E-06"
+        iyy="0.0180104324187444"
+        iyz="-0.00335879654898832"
+        izz="0.0249870479241688" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/motor_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/motor_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motor_joint"
+    type="continuous">
+    <origin
+      xyz="0.6 0 0.287"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motor_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wheel_link">
+    <inertial>
+      <origin
+        xyz="0.00017196626651117 -0.0274503580225008 2.22044604925031E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.919701249338412" />
+      <inertia
+        ixx="0.00158997015044299"
+        ixy="-5.62418653778609E-06"
+        ixz="-6.63957229367091E-20"
+        iyy="0.00248770363165098"
+        iyz="1.16271390580822E-19"
+        izz="0.00158993491700959" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.004014 0.033026 -0.247"
+      rpy="0 0 0" />
+    <parent
+      link="motor_link" />
+    <child
+      link="wheel_link" />
+    <axis
+      xyz="0.0062645 -0.99998 0" />
+  </joint>
+  <link
+    name="steering_link">
+    <inertial>
+      <origin
+        xyz="2.22044604925031E-16 1.11022302462516E-16 0.0708534190503747"
+        rpy="0 0 0" />
+      <mass
+        value="0.100938321168348" />
+      <inertia
+        ixx="0.000449053155189826"
+        ixy="-1.89271586316295E-20"
+        ixz="6.21936423063308E-20"
+        iyy="0.000449053155189826"
+        iyz="-1.60007749740726E-19"
+        izz="1.73496012240567E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/steering_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/steering_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="steering_joint"
+    type="continuous">
+    <origin
+      xyz="0.74937 0 0.232"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="steering_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="4.44089209850063E-16 0 -0.0395000000000001"
+        rpy="0 0 0" />
+      <mass
+        value="0.39709731141375" />
+      <inertia
+        ixx="0.000365362617943268"
+        ixy="4.15988159834906E-51"
+        ixz="-1.21245706409418E-36"
+        iyy="0.000365362617943268"
+        iyz="6.46109837352292E-20"
+        izz="0.000317677849131001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/laser_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0.93 -0.22 0.146"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="lroller_link">
+    <inertial>
+      <origin
+        xyz="0 0.0450000000000002 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.312850268419984" />
+      <inertia
+        ixx="0.000307324665091248"
+        ixy="8.7847735409044E-20"
+        ixz="-2.35739885551304E-20"
+        iyy="0.000204892709371718"
+        iyz="2.69663364159728E-19"
+        izz="0.000307324665091248" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/lroller_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.823529411764706 0.823529411764706 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/lroller_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lroller_joint"
+    type="continuous">
+    <origin
+      xyz="-0.6 0.17 0.01"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lroller_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics
+      friction="0.1" />
+  </joint>
+  <link
+    name="rroller_link">
+    <inertial>
+      <origin
+        xyz="1.66533453693773E-16 -0.0449999999999999 2.22044604925031E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.312850268419983" />
+      <inertia
+        ixx="0.000307324665091247"
+        ixy="3.35271630897544E-19"
+        ixz="-8.68653616963297E-21"
+        iyy="0.000204892709371718"
+        iyz="4.43633506124443E-20"
+        izz="0.000307324665091247" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/rroller_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.823529411764706 0.823529411764706 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://uv_bot_description/gearfork_bot/meshes/rroller_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rroller_joint"
+    type="continuous">
+    <origin
+      xyz="-0.6 -0.17 0.01"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rroller_link" />
+    <axis
+      xyz="0 1 0" />
+    <dynamics
+      friction="0.1" />
+  </joint>
+</robot>
