@@ -2,6 +2,7 @@
 
 import rospy
 from math import atan2
+from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
@@ -15,7 +16,7 @@ class Controller:
         self.wheel_base = 1.0  # Assume a default value for the wheel base, adjust as needed
 
         rospy.Subscriber('cmd_vel', Twist, self.cmd_callback, queue_size=10)
-        self.linear_pub = rospy.Publisher('/gearfork_bot/cmd_vel', Twist, queue_size=10)
+        self.linear_pub = rospy.Publisher('/gearfork_bot/drive_wheel_controller/command', Float64, queue_size=10)
         self.steering_pub = rospy.Publisher('/gearfork_bot/steering_joint_controller/command', JointTrajectory, queue_size=10)
         rospy.loginfo("Steering Controller")
 
@@ -33,7 +34,6 @@ class Controller:
         self.angular_vel = msg.angular.z * 2
         self.cmd_vel.linear.x = msg.linear.x
         self.linear_vel = msg.linear.x
-
 
         self.steering_msg.header.stamp = rospy.Time.now()
         self.steering_msg.header.frame_id = ''

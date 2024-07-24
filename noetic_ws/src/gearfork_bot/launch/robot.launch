@@ -1,47 +1,69 @@
 <launch>
-  <include
-    file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <!-- Launch Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+  
+  <!-- Static transform publisher -->
   <node
     name="tf_footprint_base"
     pkg="tf"
     type="static_transform_publisher"
     args="0 0 0 0 0 0 base_link base_footprint 40" />
+
+  <!-- Spawn the robot model in Gazebo -->
   <node
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
     args="-file $(find gearfork_bot)/urdf/gearfork_bot.urdf -urdf -model gearfork_bot"
     output="screen" />
+  
+  <!-- Fake joint calibration -->
   <node
     name="fake_joint_calibration"
     pkg="rostopic"
     type="rostopic"
     args="pub /calibrated std_msgs/Bool true" />
-
-  <arg
-    name="model" />
+  
+  <!-- Load the robot description parameter -->
   <param
     name="robot_description"
     textfile="$(find gearfork_bot)/urdf/gearfork_bot.urdf" />
+  
+  <!-- Joint State Publisher GUI -->
   <node
     name="joint_state_publisher_gui"
     pkg="joint_state_publisher_gui"
     type="joint_state_publisher_gui" />
+  
+  <!-- Robot State Publisher -->
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
     type="robot_state_publisher" />
+  
+  <!-- RViz -->
   <node
     name="rviz"
     pkg="rviz"
     type="rviz"
-    args="-d $(find gearfork_bot)/urdf.rviz" />
-<rosparam file = "$(find gearfork_bot)/config/motor_joint_controller.yaml" command="load"/>
-
-<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/gearfork_bot" 
-                args="joint_state_controller steering_joint_controller"/>
-        
-<include file="$(find gearfork_bot)/launch/gmapping.launch" />
-<include file="$(find gearfork_bot)/launch/navigation.launch" />
-
+    args="-d $(find gearfork_bot)/config/urdf.rviz" />
+  
+  <!-- Load motor joint controller configuration -->
+  <rosparam file="$(find gearfork_bot)/config/motor_joint_controller.yaml" command="load" />
+  
+  <!-- Controller Spawner for gearfork_bot -->
+  <node
+    name="controller_spawner"
+    pkg="controller_manager"
+    type="spawner"
+    respawn="false"
+    output="screen"
+    ns="/gearfork_bot"
+    args="joint_state_controller drive_wheel_controller steering_joint_controller" />
+  
+  <!-- Optional: Include gmapping and navigation launch files if needed -->
+  <!--
+  <include file="$(find gearfork_bot)/launch/gmapping.launch" />
+  <include file="$(find gearfork_bot)/launch/navigation.launch" />
+  -->
 </launch>

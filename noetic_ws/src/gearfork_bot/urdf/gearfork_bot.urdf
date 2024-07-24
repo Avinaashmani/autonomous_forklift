@@ -169,18 +169,10 @@
 
   <actuator name="motor1">
     <mechanicalReduction>1.0</mechanicalReduction>
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
   </actuator>
 
 </transmission>
-
-<gazebo>
-
-  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-    <robotNamespace>/gearfork_bot</robotNamespace>
-  </plugin>
-  
-</gazebo>
 
       <!-- WHEEL LINK -->
 
@@ -240,6 +232,24 @@
   </joint>
 
       <!-- STEERING JOINT -->
+<transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+</transmission>
+
+<gazebo>
+
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/gearfork_bot</robotNamespace>
+  </plugin>
+  
+</gazebo>
 
   <link
     name="steering_link">
@@ -505,43 +515,5 @@
     <dynamics
       friction="0.1" />
   </joint>
-
-<gazebo>
-  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-
-    <updateRate>10</updateRate>
-
-    <leftJoint>wheel_joint</leftJoint>
-
-    <rightJoint>wheel_joint</rightJoint>
-
-    <wheelSeparation>0.5380</wheelSeparation>
-
-    <wheelDiameter>0.2410</wheelDiameter>
-
-    <wheelAcceleration>1.0</wheelAcceleration>
-
-    <wheelTorque>10</wheelTorque>
-
-    <commandTopic>/gearfork_bot/cmd_vel</commandTopic>
-
-    <odometryTopic>odom</odometryTopic>
-
-    <odometryFrame>odom</odometryFrame>
-
-    <robotBaseFrame>base_link</robotBaseFrame>
-
-    <odometrySource>1</odometrySource>
-
-    <publishWheelTF>false</publishWheelTF>
-
-    <publishOdom>true</publishOdom>
-
-    <publishWheelJointState>false</publishWheelJointState>
-
-    <legacyMode>false</legacyMode>
-  </plugin>
-</gazebo>
-
 
 </robot>
