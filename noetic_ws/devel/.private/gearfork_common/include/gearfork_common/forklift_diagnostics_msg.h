@@ -34,7 +34,8 @@ struct forklift_diagnostics_msg_
     , kd_angle(0.0)
     , y_offset(0.0)
     , fork_angle(0.0)
-    , dist_2_pallet(0.0)  {
+    , dist_2_pallet(0.0)
+    , docking_stage()  {
     }
   forklift_diagnostics_msg_(const ContainerAllocator& _alloc)
     : header(_alloc)
@@ -46,7 +47,8 @@ struct forklift_diagnostics_msg_
     , kd_angle(0.0)
     , y_offset(0.0)
     , fork_angle(0.0)
-    , dist_2_pallet(0.0)  {
+    , dist_2_pallet(0.0)
+    , docking_stage(_alloc)  {
   (void)_alloc;
     }
 
@@ -81,6 +83,9 @@ struct forklift_diagnostics_msg_
 
    typedef double _dist_2_pallet_type;
   _dist_2_pallet_type dist_2_pallet;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _docking_stage_type;
+  _docking_stage_type docking_stage;
 
 
 
@@ -120,7 +125,8 @@ bool operator==(const ::gearfork_common::forklift_diagnostics_msg_<ContainerAllo
     lhs.kd_angle == rhs.kd_angle &&
     lhs.y_offset == rhs.y_offset &&
     lhs.fork_angle == rhs.fork_angle &&
-    lhs.dist_2_pallet == rhs.dist_2_pallet;
+    lhs.dist_2_pallet == rhs.dist_2_pallet &&
+    lhs.docking_stage == rhs.docking_stage;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -177,12 +183,12 @@ struct MD5Sum< ::gearfork_common::forklift_diagnostics_msg_<ContainerAllocator> 
 {
   static const char* value()
   {
-    return "65a0dd5e5edc9836b73daeb41d8cfa46";
+    return "34f69d0c65e8101a3a7cfab5eaf6b334";
   }
 
   static const char* value(const ::gearfork_common::forklift_diagnostics_msg_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x65a0dd5e5edc9836ULL;
-  static const uint64_t static_value2 = 0xb73daeb41d8cfa46ULL;
+  static const uint64_t static_value1 = 0x34f69d0c65e8101aULL;
+  static const uint64_t static_value2 = 0x3a7cfab5eaf6b334ULL;
 };
 
 template<class ContainerAllocator>
@@ -211,6 +217,7 @@ struct Definition< ::gearfork_common::forklift_diagnostics_msg_<ContainerAllocat
 "float64 y_offset\n"
 "float64 fork_angle\n"
 "float64 dist_2_pallet\n"
+"string docking_stage\n"
 "================================================================================\n"
 "MSG: std_msgs/Header\n"
 "# Standard metadata for higher-level stamped data types.\n"
@@ -254,6 +261,7 @@ namespace serialization
       stream.next(m.y_offset);
       stream.next(m.fork_angle);
       stream.next(m.dist_2_pallet);
+      stream.next(m.docking_stage);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -293,6 +301,8 @@ struct Printer< ::gearfork_common::forklift_diagnostics_msg_<ContainerAllocator>
     Printer<double>::stream(s, indent + "  ", v.fork_angle);
     s << indent << "dist_2_pallet: ";
     Printer<double>::stream(s, indent + "  ", v.dist_2_pallet);
+    s << indent << "docking_stage: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.docking_stage);
   }
 };
 

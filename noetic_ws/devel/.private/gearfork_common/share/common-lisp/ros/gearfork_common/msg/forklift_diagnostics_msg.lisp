@@ -56,7 +56,12 @@
     :reader dist_2_pallet
     :initarg :dist_2_pallet
     :type cl:float
-    :initform 0.0))
+    :initform 0.0)
+   (docking_stage
+    :reader docking_stage
+    :initarg :docking_stage
+    :type cl:string
+    :initform ""))
 )
 
 (cl:defclass forklift_diagnostics_msg (<forklift_diagnostics_msg>)
@@ -116,6 +121,11 @@
 (cl:defmethod dist_2_pallet-val ((m <forklift_diagnostics_msg>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader gearfork_common-msg:dist_2_pallet-val is deprecated.  Use gearfork_common-msg:dist_2_pallet instead.")
   (dist_2_pallet m))
+
+(cl:ensure-generic-function 'docking_stage-val :lambda-list '(m))
+(cl:defmethod docking_stage-val ((m <forklift_diagnostics_msg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader gearfork_common-msg:docking_stage-val is deprecated.  Use gearfork_common-msg:docking_stage instead.")
+  (docking_stage m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <forklift_diagnostics_msg>) ostream)
   "Serializes a message object of type '<forklift_diagnostics_msg>"
   (roslisp-msg-protocol:serialize (cl:slot-value msg 'header) ostream)
@@ -200,6 +210,12 @@
     (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'docking_stage))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'docking_stage))
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <forklift_diagnostics_msg>) istream)
   "Deserializes a message object of type '<forklift_diagnostics_msg>"
@@ -294,6 +310,14 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'dist_2_pallet) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'docking_stage) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'docking_stage) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<forklift_diagnostics_msg>)))
@@ -304,16 +328,16 @@
   "gearfork_common/forklift_diagnostics_msg")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<forklift_diagnostics_msg>)))
   "Returns md5sum for a message object of type '<forklift_diagnostics_msg>"
-  "65a0dd5e5edc9836b73daeb41d8cfa46")
+  "34f69d0c65e8101a3a7cfab5eaf6b334")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'forklift_diagnostics_msg)))
   "Returns md5sum for a message object of type 'forklift_diagnostics_msg"
-  "65a0dd5e5edc9836b73daeb41d8cfa46")
+  "34f69d0c65e8101a3a7cfab5eaf6b334")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<forklift_diagnostics_msg>)))
   "Returns full string definition for message of type '<forklift_diagnostics_msg>"
-  (cl:format cl:nil "Header header~%float64 angular_vel~%float64 linear_vel~%float64 kp_dist~%float64 kd_dist~%float64 kp_angle~%float64 kd_angle~%float64 y_offset~%float64 fork_angle~%float64 dist_2_pallet~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%float64 angular_vel~%float64 linear_vel~%float64 kp_dist~%float64 kd_dist~%float64 kp_angle~%float64 kd_angle~%float64 y_offset~%float64 fork_angle~%float64 dist_2_pallet~%string docking_stage~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'forklift_diagnostics_msg)))
   "Returns full string definition for message of type 'forklift_diagnostics_msg"
-  (cl:format cl:nil "Header header~%float64 angular_vel~%float64 linear_vel~%float64 kp_dist~%float64 kd_dist~%float64 kp_angle~%float64 kd_angle~%float64 y_offset~%float64 fork_angle~%float64 dist_2_pallet~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%float64 angular_vel~%float64 linear_vel~%float64 kp_dist~%float64 kd_dist~%float64 kp_angle~%float64 kd_angle~%float64 y_offset~%float64 fork_angle~%float64 dist_2_pallet~%string docking_stage~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <forklift_diagnostics_msg>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'header))
@@ -326,6 +350,7 @@
      8
      8
      8
+     4 (cl:length (cl:slot-value msg 'docking_stage))
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <forklift_diagnostics_msg>))
   "Converts a ROS message object to a list"
@@ -340,4 +365,5 @@
     (cl:cons ':y_offset (y_offset msg))
     (cl:cons ':fork_angle (fork_angle msg))
     (cl:cons ':dist_2_pallet (dist_2_pallet msg))
+    (cl:cons ':docking_stage (docking_stage msg))
 ))

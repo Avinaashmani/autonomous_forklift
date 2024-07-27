@@ -16,7 +16,7 @@
 
 (defclass gearfork_common::forklift_diagnostics_msg
   :super ros::object
-  :slots (_header _angular_vel _linear_vel _kp_dist _kd_dist _kp_angle _kd_angle _y_offset _fork_angle _dist_2_pallet ))
+  :slots (_header _angular_vel _linear_vel _kp_dist _kd_dist _kp_angle _kd_angle _y_offset _fork_angle _dist_2_pallet _docking_stage ))
 
 (defmethod gearfork_common::forklift_diagnostics_msg
   (:init
@@ -31,6 +31,7 @@
     ((:y_offset __y_offset) 0.0)
     ((:fork_angle __fork_angle) 0.0)
     ((:dist_2_pallet __dist_2_pallet) 0.0)
+    ((:docking_stage __docking_stage) "")
     )
    (send-super :init)
    (setq _header __header)
@@ -43,6 +44,7 @@
    (setq _y_offset (float __y_offset))
    (setq _fork_angle (float __fork_angle))
    (setq _dist_2_pallet (float __dist_2_pallet))
+   (setq _docking_stage (string __docking_stage))
    self)
   (:header
    (&rest __header)
@@ -78,6 +80,9 @@
   (:dist_2_pallet
    (&optional __dist_2_pallet)
    (if __dist_2_pallet (setq _dist_2_pallet __dist_2_pallet)) _dist_2_pallet)
+  (:docking_stage
+   (&optional __docking_stage)
+   (if __docking_stage (setq _docking_stage __docking_stage)) _docking_stage)
   (:serialization-length
    ()
    (+
@@ -101,6 +106,8 @@
     8
     ;; float64 _dist_2_pallet
     8
+    ;; string _docking_stage
+    4 (length _docking_stage)
     ))
   (:serialize
    (&optional strm)
@@ -126,6 +133,8 @@
        (sys::poke _fork_angle (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _dist_2_pallet
        (sys::poke _dist_2_pallet (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; string _docking_stage
+       (write-long (length _docking_stage) s) (princ _docking_stage s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -150,11 +159,13 @@
      (setq _fork_angle (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _dist_2_pallet
      (setq _dist_2_pallet (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; string _docking_stage
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _docking_stage (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;;
    self)
   )
 
-(setf (get gearfork_common::forklift_diagnostics_msg :md5sum-) "65a0dd5e5edc9836b73daeb41d8cfa46")
+(setf (get gearfork_common::forklift_diagnostics_msg :md5sum-) "34f69d0c65e8101a3a7cfab5eaf6b334")
 (setf (get gearfork_common::forklift_diagnostics_msg :datatype-) "gearfork_common/forklift_diagnostics_msg")
 (setf (get gearfork_common::forklift_diagnostics_msg :definition-)
       "Header header
@@ -167,6 +178,7 @@ float64 kd_angle
 float64 y_offset
 float64 fork_angle
 float64 dist_2_pallet
+string docking_stage
 ================================================================================
 MSG: std_msgs/Header
 # Standard metadata for higher-level stamped data types.
@@ -187,6 +199,6 @@ string frame_id
 
 
 
-(provide :gearfork_common/forklift_diagnostics_msg "65a0dd5e5edc9836b73daeb41d8cfa46")
+(provide :gearfork_common/forklift_diagnostics_msg "34f69d0c65e8101a3a7cfab5eaf6b334")
 
 

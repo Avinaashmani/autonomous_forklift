@@ -9,7 +9,7 @@ import struct
 import std_msgs.msg
 
 class forklift_diagnostics_msg(genpy.Message):
-  _md5sum = "65a0dd5e5edc9836b73daeb41d8cfa46"
+  _md5sum = "34f69d0c65e8101a3a7cfab5eaf6b334"
   _type = "gearfork_common/forklift_diagnostics_msg"
   _has_header = True  # flag to mark the presence of a Header object
   _full_text = """Header header
@@ -22,6 +22,7 @@ float64 kd_angle
 float64 y_offset
 float64 fork_angle
 float64 dist_2_pallet
+string docking_stage
 ================================================================================
 MSG: std_msgs/Header
 # Standard metadata for higher-level stamped data types.
@@ -38,8 +39,8 @@ time stamp
 #Frame this data is associated with
 string frame_id
 """
-  __slots__ = ['header','angular_vel','linear_vel','kp_dist','kd_dist','kp_angle','kd_angle','y_offset','fork_angle','dist_2_pallet']
-  _slot_types = ['std_msgs/Header','float64','float64','float64','float64','float64','float64','float64','float64','float64']
+  __slots__ = ['header','angular_vel','linear_vel','kp_dist','kd_dist','kp_angle','kd_angle','y_offset','fork_angle','dist_2_pallet','docking_stage']
+  _slot_types = ['std_msgs/Header','float64','float64','float64','float64','float64','float64','float64','float64','float64','string']
 
   def __init__(self, *args, **kwds):
     """
@@ -49,7 +50,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,angular_vel,linear_vel,kp_dist,kd_dist,kp_angle,kd_angle,y_offset,fork_angle,dist_2_pallet
+       header,angular_vel,linear_vel,kp_dist,kd_dist,kp_angle,kd_angle,y_offset,fork_angle,dist_2_pallet,docking_stage
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -78,6 +79,8 @@ string frame_id
         self.fork_angle = 0.
       if self.dist_2_pallet is None:
         self.dist_2_pallet = 0.
+      if self.docking_stage is None:
+        self.docking_stage = ''
     else:
       self.header = std_msgs.msg.Header()
       self.angular_vel = 0.
@@ -89,6 +92,7 @@ string frame_id
       self.y_offset = 0.
       self.fork_angle = 0.
       self.dist_2_pallet = 0.
+      self.docking_stage = ''
 
   def _get_types(self):
     """
@@ -112,6 +116,12 @@ string frame_id
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
       buff.write(_get_struct_9d().pack(_x.angular_vel, _x.linear_vel, _x.kp_dist, _x.kd_dist, _x.kp_angle, _x.kd_angle, _x.y_offset, _x.fork_angle, _x.dist_2_pallet))
+      _x = self.docking_stage
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -143,6 +153,15 @@ string frame_id
       start = end
       end += 72
       (_x.angular_vel, _x.linear_vel, _x.kp_dist, _x.kd_dist, _x.kp_angle, _x.kd_angle, _x.y_offset, _x.fork_angle, _x.dist_2_pallet,) = _get_struct_9d().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.docking_stage = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.docking_stage = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -165,6 +184,12 @@ string frame_id
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
       buff.write(_get_struct_9d().pack(_x.angular_vel, _x.linear_vel, _x.kp_dist, _x.kd_dist, _x.kp_angle, _x.kd_angle, _x.y_offset, _x.fork_angle, _x.dist_2_pallet))
+      _x = self.docking_stage
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -197,6 +222,15 @@ string frame_id
       start = end
       end += 72
       (_x.angular_vel, _x.linear_vel, _x.kp_dist, _x.kd_dist, _x.kp_angle, _x.kd_angle, _x.y_offset, _x.fork_angle, _x.dist_2_pallet,) = _get_struct_9d().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.docking_stage = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.docking_stage = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

@@ -29,6 +29,7 @@ class forklift_diagnostics_msg {
       this.y_offset = null;
       this.fork_angle = null;
       this.dist_2_pallet = null;
+      this.docking_stage = null;
     }
     else {
       if (initObj.hasOwnProperty('header')) {
@@ -91,6 +92,12 @@ class forklift_diagnostics_msg {
       else {
         this.dist_2_pallet = 0.0;
       }
+      if (initObj.hasOwnProperty('docking_stage')) {
+        this.docking_stage = initObj.docking_stage
+      }
+      else {
+        this.docking_stage = '';
+      }
     }
   }
 
@@ -116,6 +123,8 @@ class forklift_diagnostics_msg {
     bufferOffset = _serializer.float64(obj.fork_angle, buffer, bufferOffset);
     // Serialize message field [dist_2_pallet]
     bufferOffset = _serializer.float64(obj.dist_2_pallet, buffer, bufferOffset);
+    // Serialize message field [docking_stage]
+    bufferOffset = _serializer.string(obj.docking_stage, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -143,13 +152,16 @@ class forklift_diagnostics_msg {
     data.fork_angle = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [dist_2_pallet]
     data.dist_2_pallet = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [docking_stage]
+    data.docking_stage = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
     length += std_msgs.msg.Header.getMessageSize(object.header);
-    return length + 72;
+    length += _getByteLength(object.docking_stage);
+    return length + 76;
   }
 
   static datatype() {
@@ -159,7 +171,7 @@ class forklift_diagnostics_msg {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '65a0dd5e5edc9836b73daeb41d8cfa46';
+    return '34f69d0c65e8101a3a7cfab5eaf6b334';
   }
 
   static messageDefinition() {
@@ -175,6 +187,7 @@ class forklift_diagnostics_msg {
     float64 y_offset
     float64 fork_angle
     float64 dist_2_pallet
+    string docking_stage
     ================================================================================
     MSG: std_msgs/Header
     # Standard metadata for higher-level stamped data types.
@@ -268,6 +281,13 @@ class forklift_diagnostics_msg {
     }
     else {
       resolved.dist_2_pallet = 0.0
+    }
+
+    if (msg.docking_stage !== undefined) {
+      resolved.docking_stage = msg.docking_stage;
+    }
+    else {
+      resolved.docking_stage = ''
     }
 
     return resolved;

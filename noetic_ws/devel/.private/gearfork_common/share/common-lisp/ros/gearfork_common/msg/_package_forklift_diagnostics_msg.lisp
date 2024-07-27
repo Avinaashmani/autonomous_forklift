@@ -19,4 +19,6 @@
           FORK_ANGLE
           DIST_2_PALLET-VAL
           DIST_2_PALLET
+          DOCKING_STAGE-VAL
+          DOCKING_STAGE
 ))
