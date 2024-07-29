@@ -43,17 +43,17 @@ class DockPallet:
         if dimension < 3:
             rospy.signal_shutdown("not large enough...")
         
-        for i in range (0, 60):
-            self.cmd_vel.linear.x = -0.5
+        for i in range (0, 40):
+            self.cmd_vel.linear.x = 0.2
             self.cmd_vel.angular.z = 0.0
 
             self.move_cmd.publish(self.cmd_vel)
             self.rate.sleep()
-        
+    
         rospy.loginfo("Turning Left")
 
-        for i in range (0, 110):
-            self.cmd_vel.linear.x = -0.12
+        for i in range (0, 107):
+            self.cmd_vel.linear.x = 0.145
             self.cmd_vel.angular.z = -1.0
 
             self.move_cmd.publish(self.cmd_vel)
