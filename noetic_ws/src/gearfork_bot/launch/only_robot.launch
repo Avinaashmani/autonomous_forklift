@@ -36,7 +36,9 @@
     pkg="rviz"
     type="rviz"
     args="-d $(find gearfork_bot)/rviz/trail_test_2.rviz" />
+
 <node name='pallet_tf_publisher' pkg='gearfork_bot' type='fake_tf_publisher.py' output='screen' />
+
 <rosparam file = "$(find gearfork_bot)/config/motor_joint_controller.yaml" command="load"/>
 
 <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/gearfork_bot" 

@@ -7,7 +7,6 @@ from math import sqrt, atan2, pi
 from tf.transformations import euler_from_quaternion
 from geometry_msgs.msg import Twist
 from trajectory_msgs.msg import JointTrajectory
-from gearfork_common.msg import forklift_diagnostics_msg
 
 class DockPallet:
 
@@ -15,147 +14,50 @@ class DockPallet:
         rospy.init_node('pallet_dock', anonymous=True)
         rosparam.load_file('/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/config/pallet_docking_prams.yaml')
 
-        self.pallet_x = 0.0
-        self.pallet_y = 0.0
-        self.pallet_angle = 0.0
-
         self.fork_x = 0.0
         self.fork_y = 0.0
         self.fork_angle = 0.0
-
+        
         self.distance = 0.0
-        self.path_angle_err = 0.0
 
-        self.controlled_angle = 0.0
         self.controlled_speed = 0.0
 
         self.move_cmd = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
-        self.diagnostics_pub = rospy.Publisher('/gearfork_lift_diagnostics', forklift_diagnostics_msg, queue_size=10)
         
         self.tf_listener = tf.TransformListener()
 
         self.cmd_vel = Twist()
-        self.diagnostics_msg = forklift_diagnostics_msg()
 
         self.kp_dist = 0.2
         self.kd_dist = 0.5
-
-        self.kp_angle = 1.5
-        self.kd_angle = 0.5
+        self.rate = rospy.Rate(5)
 
         self.control_timer = rospy.Timer(rospy.Duration(0.1), self.control_loop)  # type: ignore
         rospy.on_shutdown(self.on_shutdown)
 
     def control_loop(self, event):
         self.update_tf_data()
-        self.dock()
+        self.draw_square(5)
 
-    def dock(self):
-        self.update_tf_data()
-
-        distance_y = self.fork_y  
-        angle_ = self.fork_angle  
-        distance_ = self.pallet_x  
-
-        kp_dist = distance_ / 10
-        kd_dist = distance_y 
-
-        kp_dist_dock = 0.1
-        kd_dist_dock = distance_y
-
-        kp_angle = distance_y 
-        kd_angle = angle_
+    def draw_square(self, dimension):
+        if dimension < 3:
+            rospy.signal_shutdown("not large enough...")
         
-        kp_angle_dock = distance_y * 2.0 
-        kd_angle_dock = angle_
-        
-        if not hasattr(self, 'docking_state'):
-            self.docking_state = 'align'
-
-        if not hasattr(self, 'prev_error_dist'):
-            self.prev_error_dist = 0
-        
-        if not hasattr(self, 'prev_error_angle'):
-            self.prev_error_angle = 0
-
-        error_dist = distance_ - distance_y
-        derivative_dist = (error_dist - self.prev_error_dist)
-
-        error_angle = angle_ - distance_y
-        derivative_angle = (error_angle - self.prev_error_angle)
-
-        controlled_speed = abs(round(self.kp_dist * error_dist + self.kd_dist * derivative_dist, 3))
-        controlled_angle = round(kp_angle * error_angle + kd_angle * derivative_angle, 4)
-
-        controlled_speed = max(min(controlled_speed, 1.57), -1.57)
-        controlled_angle = max(min(controlled_angle, 1.57), -1.57)
-
-        if abs(controlled_angle) > 1.57:
-            controlled_angle = 1.57
-        
-        if abs(controlled_speed) > 1.6:
-            controlled_speed = 1.6
-
-        controlled_dock_angle = round(kp_angle_dock * error_angle + kd_angle_dock * derivative_angle, 4)
-        controlled_dock_speed = round(kp_dist_dock * error_dist + kd_dist_dock * derivative_dist, 4)
-
-        rospy.loginfo(f"Fork Y: {distance_y} Speed: {distance_y * 0.5}")
-        rospy.loginfo(f"Angle: {controlled_angle}")
-        rospy.loginfo(f"Speed {controlled_speed }")
-
-        self.diagnostics_msg.fork_angle = abs(self.fork_angle)
-        self.diagnostics_msg.angular_vel = abs(controlled_angle)
-        self.diagnostics_msg.linear_vel = abs(controlled_speed)
-        self.diagnostics_msg.kp_dist = kp_dist
-        self.diagnostics_msg.kp_angle = kp_angle
-        self.diagnostics_msg.kd_dist = kd_dist
-        self.diagnostics_msg.kd_angle = kd_angle
-        self.diagnostics_msg.dist_2_pallet = abs(distance_)
-        self.diagnostics_msg.y_offset = abs(self.fork_y)
-        
-        self.diagnostics_msg.header.stamp = rospy.Time()
-        self.diagnostics_pub.publish(self.diagnostics_msg)
-
-        if self.docking_state == 'align':
-            if abs(distance_y) > 0.1:
-
-                if distance_y > 0:
-                    self.cmd_vel.linear.x = -controlled_speed  
-                    self.cmd_vel.angular.z += controlled_angle  
-                    self.move_cmd.publish(self.cmd_vel)
-
-                elif distance_y < 0:                                             
-                    self.cmd_vel.linear.x = -controlled_speed  
-                    self.cmd_vel.angular.z -= controlled_angle  
-                    self.move_cmd.publish(self.cmd_vel)        
-
-            elif abs(distance_y) < 0.15:
-                self.docking_state = 'move_forward'
-
-        elif self.docking_state == 'move_forward':
-            if abs(distance_) > 0.1:
-                rospy.loginfo("Moving forward")
-                
-                if not 0 <= abs(distance_y) <= 0.05:
-                    if distance_y > 0:
-                        self.cmd_vel.angular.z += (controlled_dock_angle * 100) 
-                        self.cmd_vel.linear.x = -abs(controlled_dock_speed)
-                    else:
-                        self.cmd_vel.angular.z -= (controlled_dock_angle * 100)
-                        self.cmd_vel.linear.x = -abs(controlled_dock_speed)
-
-                self.move_cmd.publish(self.cmd_vel)
-            else:
-                self.docking_state = 'stop'
-
-        elif self.docking_state == 'stop':
-            rospy.loginfo("Docking State: Stop")
-            self.cmd_vel.linear.x = 0.0
+        for i in range (0, 60):
+            self.cmd_vel.linear.x = -0.5
             self.cmd_vel.angular.z = 0.0
-            self.move_cmd.publish(self.cmd_vel)
 
-        self.prev_error_dist = error_dist
-        self.prev_error_angle = error_angle
+            self.move_cmd.publish(self.cmd_vel)
+            self.rate.sleep()
+        
+        rospy.loginfo("Turning Left")
+
+        for i in range (0, 110):
+            self.cmd_vel.linear.x = -0.12
+            self.cmd_vel.angular.z = -1.0
+
+            self.move_cmd.publish(self.cmd_vel)
+            self.rate.sleep()
 
     def on_shutdown(self):
         rospy.loginfo("Shutting down DockPallet node")
@@ -169,18 +71,10 @@ class DockPallet:
 
     def update_tf_data(self):
         try:
-            (trans_pallet, rot_pallet) = self.tf_listener.lookupTransform('/base_link', '/pallet_center', rospy.Time(0))
-            self.pallet_x = round(trans_pallet[0], 3)
-            self.pallet_y = round(trans_pallet[1], 3)
-            self.pallet_angle = round(euler_from_quaternion(rot_pallet)[2], 3)
-
             (trans_fork, rot_fork) = self.tf_listener.lookupTransform('/odom', '/base_link', rospy.Time(0))
             self.fork_x = round(trans_fork[0], 3)
             self.fork_y = round(trans_fork[1], 3)
             self.fork_angle = round(euler_from_quaternion(rot_fork)[2], 3)
-
-            self.distance = sqrt((self.pallet_x - self.fork_x) ** 2 + (self.pallet_y - self.fork_y) ** 2)
-            self.path_angle_err = abs(atan2(self.fork_y - self.pallet_y, self.fork_x - self.pallet_x)) - self.fork_angle
 
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
             rospy.logwarn("Failed to get TF data. Retrying...")
