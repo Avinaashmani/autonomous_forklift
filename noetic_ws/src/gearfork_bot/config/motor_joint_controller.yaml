@@ -7,3 +7,8 @@ gearfork_bot:
   steering_joint_controller:
     type: position_controllers/JointTrajectoryController
     joints: [motor_joint]
+
+  velocity_joint_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: wheel_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}

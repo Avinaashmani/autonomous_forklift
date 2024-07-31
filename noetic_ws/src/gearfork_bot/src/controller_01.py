@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
+from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
@@ -13,13 +14,13 @@ class Controller:
         self.angular_vel = 0.0
 
         rospy.Subscriber('cmd_vel', Twist, self.cmd_callback, queue_size=10)
-        self.linear_pub = rospy.Publisher('/gearfork_bot/cmd_vel', Twist, queue_size=10)
+        self.linear_pub = rospy.Publisher('/gearfork_bot/velocity_joint_controller/command', Float64, queue_size=10)
         self.steering_pub = rospy.Publisher('/gearfork_bot/steering_joint_controller/command', JointTrajectory, queue_size=10)
         rospy.loginfo("Steering Controller")
 
         self.joint_name = 'motor_joint'
 
-        self.cmd_vel = Twist()
+        self.cmd_vel = Float64()
         self.steering_msg = JointTrajectory()
         self.point_msg = JointTrajectoryPoint()
 
@@ -28,7 +29,7 @@ class Controller:
 
     def cmd_callback(self, msg):
         self.angular_vel = msg.angular.z * 2
-        self.cmd_vel.linear.x = msg.linear.x
+        self.cmd_vel.data = msg.linear.x
         self.linear_vel = msg.linear.x
 
         self.steering_msg.header.stamp = rospy.Time.now()

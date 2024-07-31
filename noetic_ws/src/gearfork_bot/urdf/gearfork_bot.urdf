@@ -174,6 +174,20 @@
 
 </transmission>
 
+<transmission name="trans2">
+  <type>transmission_interface/SimpleTransmission</type>
+
+  <joint name="wheel_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+
+  <actuator name="motor2">
+    <mechanicalReduction>1.0</mechanicalReduction>
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </actuator>
+
+</transmission>
+
 <gazebo>
 
   <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -353,7 +367,7 @@
       xyz="0 0 1" />
   </joint>
 
-  <!-- <gazebo reference="laser_link">
+  <gazebo reference="laser_link">
     <material>Gazebo/FlatBlack</material>
     <sensor type="ray" name="lds_lfcd_sensor">
       <pose>0 0 0 0 0 0</pose>
@@ -372,7 +386,7 @@
         </scan>
         <range>
           <min>0.120</min>
-          <max>3.5</max>
+          <max>1.5</max>
           <resolution>0.015</resolution>
         </range>
         <noise>
@@ -386,7 +400,7 @@
         <frameName>laser_link</frameName>
       </plugin>
     </sensor>
-  </gazebo> -->
+  </gazebo>
 
 <!-- LEFT ROLLER LINK -->
 
@@ -505,7 +519,7 @@
     <dynamics
       friction="0.1" />
   </joint>
-
+<!-- 
 <gazebo>
   <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
 
@@ -542,6 +556,6 @@
     <legacyMode>false</legacyMode>
   </plugin>
 </gazebo>
-
+ -->
 
 </robot>

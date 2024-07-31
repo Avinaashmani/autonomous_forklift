@@ -24,7 +24,7 @@ class PalletTF:
             tf1.child_frame_id = "point_1"
 
             # Set translation
-            tf1.transform.translation.x = -self.square_dimension
+            tf1.transform.translation.x = self.square_dimension
             tf1.transform.translation.y = 0.0
             tf1.transform.translation.z = 0.0
 
@@ -53,7 +53,7 @@ class PalletTF:
             tf3.child_frame_id = "point_3"
             # Set translation
             tf3.transform.translation.x = 0.0
-            tf3.transform.translation.y = self.square_dimension
+            tf3.transform.translation.y = -self.square_dimension
             tf3.transform.translation.z = 0.0
 
             # Set rotation (example rotation with only z and w components)

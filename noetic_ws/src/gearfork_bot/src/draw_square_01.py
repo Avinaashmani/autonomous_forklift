@@ -42,7 +42,7 @@ class DockPallet:
     def draw_square(self, dimension):
         if dimension < 3:
             rospy.signal_shutdown("not large enough...")
-        
+        rospy.loginfo(self.fork_angle)
         for i in range (0, 40):
             self.cmd_vel.linear.x = 0.2
             self.cmd_vel.angular.z = 0.0
@@ -52,7 +52,7 @@ class DockPallet:
     
         rospy.loginfo("Turning Left")
 
-        for i in range (0, 107):
+        for i in range (0, 105):
             self.cmd_vel.linear.x = 0.145
             self.cmd_vel.angular.z = -1.0
 

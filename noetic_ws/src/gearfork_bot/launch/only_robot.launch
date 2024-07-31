@@ -1,6 +1,6 @@
 <launch>
   <include
-    file="$(find gazebo_ros)/launch/empty_world.launch" />
+    file="$(find gazebo_ros)/launch/path_planning_test.launch" />
   <node
     name="tf_footprint_base"
     pkg="tf"
@@ -42,9 +42,9 @@
 <rosparam file = "$(find gearfork_bot)/config/motor_joint_controller.yaml" command="load"/>
 
 <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/gearfork_bot" 
-                args="joint_state_controller steering_joint_controller"/>
+                args="joint_state_controller steering_joint_controller velocity_joint_controller"/>
         
-<!-- <include file="$(find gearfork_bot)/launch/gmapping.launch" />
-<include file="$(find gearfork_bot)/launch/navigation.launch" /> -->
+<include file="$(find gearfork_bot)/launch/gmapping.launch" />
+<!-- <include file="$(find gearfork_bot)/launch/navigation.launch" />  -->
 
 </launch>
