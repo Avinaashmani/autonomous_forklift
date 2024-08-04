@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="forkamrtest3">
+  <link
+    name="base_footprint">
+    <inertial>
+      <origin
+        xyz="-2.22044604925031E-16 -1.11022302462516E-16 0.0150000000000001"
+        rpy="0 0 0" />
+      <mass
+        value="9.42477796076935E-05" />
+      <inertia
+        ixx="7.0921454154789E-09"
+        ixy="1.03652098221875E-56"
+        ixz="-2.73196242009683E-42"
+        iyy="7.0921454154789E-09"
+        iyz="2.54645439948026E-23"
+        izz="4.71238898038468E-11" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/base_footprint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/base_footprint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.46875348596942 0.000343113287662122 0.176433461672969"
+        rpy="0 0 0" />
+      <mass
+        value="5.37682193052439" />
+      <inertia
+        ixx="0.236486794589605"
+        ixy="-0.000892001504283949"
+        ixz="-0.224856062792506"
+        iyy="0.94960478102618"
+        iyz="-0.000244756354225053"
+        izz="1.00366495457815" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_joint"
+    type="fixed">
+    <origin
+      xyz="-0.84027 0 0.08"
+      rpy="0 0 0" />
+    <parent
+      link="base_footprint" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="motor_link">
+    <inertial>
+      <origin
+        xyz="0.00210376812546609 0.0105050648024198 -0.129597911206188"
+        rpy="0 0 0" />
+      <mass
+        value="4.08632554025865" />
+      <inertia
+        ixx="0.0144898677138344"
+        ixy="0.000783428625159998"
+        ixz="-7.76005852187133E-05"
+        iyy="0.0152877985069575"
+        iyz="0.000208365043649313"
+        izz="0.0195515217807752" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/motor_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/motor_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motor_joint"
+    type="revolute">
+    <origin
+      xyz="0.84027 0 0.216"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motor_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="5" velocity="10.0"/>
+  </joint>
+  <link
+    name="wheel_link">
+    <inertial>
+      <origin
+        xyz="0.000536849001509632 1.67088707314633E-08 -0.0211602083502366"
+        rpy="0 0 0" />
+      <mass
+        value="1.21637660223564" />
+      <inertia
+        ixx="0.00444635735525104"
+        ixy="1.36195810090993E-06"
+        ixz="-9.58866495614166E-05"
+        iyy="0.00444225537797136"
+        iyz="3.44626993707972E-08"
+        izz="0.00822330988727168" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0005453 -0.021493 -0.23"
+      rpy="1.5708 0 0" />
+    <parent
+      link="motor_link" />
+    <child
+      link="wheel_link" />
+    <axis
+      xyz="0.025363 0 -0.99968" />
+  </joint>
+  <link
+    name="lroller_link">
+    <inertial>
+      <origin
+        xyz="0 -0.0299999999999999 -2.22044604925031E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.296880505764236" />
+      <inertia
+        ixx="0.000209671857195992"
+        ixy="3.77401154477326E-21"
+        ixz="-1.45520456793684E-21"
+        iyy="0.000241215410933442"
+        iyz="-1.72191555296234E-38"
+        izz="0.000209671857195992" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/lroller_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/lroller_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lroller_joint"
+    type="continuous">
+    <origin
+      xyz="-0.49533 -0.175 0.01"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lroller_link" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="rroller_link">
+    <inertial>
+      <origin
+        xyz="-8.32667268468867E-17 0.0299999999999999 -2.22044604925031E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.296880505764235" />
+      <inertia
+        ixx="0.000209671857195991"
+        ixy="-8.97117636505482E-20"
+        ixz="1.76936437307522E-33"
+        iyy="0.000241215410933441"
+        iyz="-1.18430182019675E-19"
+        izz="0.000209671857195991" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/rroller_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/rroller_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rroller_joint"
+    type="continuous">
+    <origin
+      xyz="-0.49533 0.175 0.01"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rroller_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="0 -2.67230682027275E-13 -0.0394999999999999"
+        rpy="0 0 0" />
+      <mass
+        value="0.39709731141375" />
+      <inertia
+        ixx="0.000365362617943268"
+        ixy="6.5253044679986E-52"
+        ixz="-1.21245706409418E-36"
+        iyy="0.000365362617943268"
+        iyz="6.46109837352296E-20"
+        izz="0.000317677849131001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/laser_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0.87274 -0.0013109 0.394"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="imu">
+    <inertial>
+      <origin
+        xyz="0 0 -0.00149999999999983"
+        rpy="0 0 0" />
+      <mass
+        value="0.00269999999999989" />
+      <inertia
+        ixx="2.04524999999992E-07"
+        ixy="9.62348012692116E-24"
+        ixz="8.27180612546983E-25"
+        iyy="2.04524999999989E-07"
+        iyz="-4.79103010778501E-25"
+        izz="4.04999999999981E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/imu.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forkamrtest3/meshes/imu.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="imu_joint"
+    type="fixed">
+    <origin
+      xyz="0.89005 -0.24069 0.3195"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="imu" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+   <gazebo>
+     <!--Modified plugin:-->
+     <plugin name="tricycle_drive_controller" filename="libTricycleDriveModPlugin.so">        
+         <rosDebugLevel>Debug</rosDebugLevel>
+         <publishWheelTF>false</publishWheelTF>
+         <robotNamespace>/forkamrtest3</robotNamespace>
+         <publishWheelJointState>true</publishWheelJointState>
+         <steeringJoint>motor_joint</steeringJoint>
+         <actuatedWheelJoint>wheel_joint</actuatedWheelJoint>
+         <actuatedWheelDiameter>0.3</actuatedWheelDiameter>
+         <encoderWheelLeftJoint>wheel_joint</encoderWheelLeftJoint>
+         <encoderWheelRightJoint>wheel_joint</encoderWheelRightJoint>
+         <encoderWheelDiameter>0.3</encoderWheelDiameter>
+         <encoderWheelSeparation>0.6</encoderWheelSeparation>
+         <commandTopic>cmd_vel</commandTopic>
+         <odometryTopic>odom</odometryTopic>
+         <odometryFrame>odom</odometryFrame>
+         <odometrySource>world</odometrySource>
+         <robotBaseFrame>base_footprint</robotBaseFrame>
+         <updateRate>10.0</updateRate>
+         <wheelAcceleration>2</wheelAcceleration>
+         <wheelDeceleration>5</wheelDeceleration>
+         <wheelSpeedTolerance>0.05</wheelSpeedTolerance>
+         <wheelTorque>10</wheelTorque>
+         <steeringSpeed>0.3</steeringSpeed>
+         <steeringAngleTolerance>0.02</steeringAngleTolerance>
+         <steeringAngleLimit>0.88</steeringAngleLimit>
+     </plugin>
+   </gazebo>
+
+    <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>imu</bodyName>
+      <frameName>imu</frameName>
+      <robotNamespace>/forkamrtest3</robotNamespace>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>0</updateRate>
+      <imu>
+        <noise>
+          <type>gaussian</type>
+          <rate>
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </rate>
+          <accel>
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </accel>
+        </noise>
+      </imu>
+    </plugin>
+  </gazebo>
+  
+  <gazebo reference="laser_link">
+    <material>Gazebo/FlatBlack</material>
+    <sensor type="ray" name="lds_lfcd_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+
+          <horizontal>
+            <samples>760</samples>
+            <resolution>1</resolution>
+            <min_angle>-2.2</min_angle>
+            <max_angle>1.57</max_angle>
+          </horizontal>
+
+        </scan>
+        <range>
+          <min>0.120</min>
+          <max>5.5</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>laser_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+</robot>
