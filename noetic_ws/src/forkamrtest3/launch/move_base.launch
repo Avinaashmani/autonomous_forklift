@@ -1,0 +1,18 @@
+<launch>
+  <arg name="map" default="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/map/path_planning_test.yaml"/>
+  <node pkg="mbf_costmap_nav" type="mbf_costmap_nav" respawn="false" name="move_base_flex" output="screen">
+    <param name="tf_timeout" value="1.5"/>
+    <param name="planner_max_retries" value="3"/>
+    <rosparam file="$(find forkamrtest3)/config/planners.yaml" command="load" />
+    <rosparam file="$(find forkamrtest3)/config/controllers.yaml" command="load" />
+    <rosparam file="$(find forkamrtest3)/config/costmap_common_params.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find forkamrtest3)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find forkamrtest3)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find forkamrtest3)/config/local_costmap_params.yaml" command="load" />
+  </node>
+
+  <node name="grid_server" pkg="map_server" type="map_server" args="$(arg map)">
+      <param name="frame_id" value="map"/>
+  </node>
+
+</launch>

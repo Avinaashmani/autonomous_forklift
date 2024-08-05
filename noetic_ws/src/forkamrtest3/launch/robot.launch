@@ -1,17 +1,20 @@
 <launch>
-  <include
-    file="$(find gazebo_ros)/launch/empty_world.launch" />
-  <node
-    name="tf_footprint_base"
-    pkg="tf"
-    type="static_transform_publisher"
-    args="0 0 0 0 0 0 base_link base_footprint 40" />
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!-- <arg name="world_name" value="$(find vab_description)/world/new_world.world"/> -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
   <node
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-file $(find gearfork_bot)/urdf/gearfork_bot.urdf -urdf -model gearfork_bot"
+    args="-file $(find forkamrtest3)/urdf/forkamrtest3.urdf -urdf -model gearfork_bot"
     output="screen" />
+
   <node
     name="fake_joint_calibration"
     pkg="rostopic"
@@ -23,25 +26,26 @@
   <param
     name="robot_description"
     textfile="$(find gearfork_bot)/urdf/gearfork_bot.urdf" />
+  
   <node
-    name="joint_state_publisher_gui"
-    pkg="joint_state_publisher_gui"
-    type="joint_state_publisher_gui" />
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+  
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
     type="robot_state_publisher" />
+  
   <node
     name="rviz"
     pkg="rviz"
     type="rviz"
     args="-d $(find gearfork_bot)/urdf.rviz" />
-<rosparam file = "$(find gearfork_bot)/config/motor_joint_controller.yaml" command="load"/>
 
-<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/gearfork_bot" 
-                args="joint_state_controller steering_joint_controller"/>
-        
-<include file="$(find gearfork_bot)/launch/gmapping.launch" />
-<include file="$(find gearfork_bot)/launch/navigation.launch" />
+<include file="$(find forkamrtest3)/launch/gmapping.launch" />
+<include file="$(find forkamrtest3)/launch/navigation.launch" />
+<!-- <include file="/home/avinaash/catkin_ws/src/full_coverage_path_planner/test/full_coverage_path_planner/test_full_coverage_path_planner.launch" /> -->
+<!-- <include file="/home/avinaash/catkin_ws/src/path_tracking_pid/launch/path_tracking_pid_mbf.launch" /> -->
 
 </launch>

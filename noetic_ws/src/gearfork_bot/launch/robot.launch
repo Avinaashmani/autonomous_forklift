@@ -41,7 +41,7 @@
 <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/gearfork_bot" 
                 args="joint_state_controller steering_joint_controller"/>
         
-<include file="$(find gearfork_bot)/launch/gmapping.launch" />
-<include file="$(find gearfork_bot)/launch/navigation.launch" />
+<include file="/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/launch/navigation.launch" />
+<include file="/home/avinaash/autonomous_forklift/noetic_ws/src/gearfork_bot/launch/gmapping.launch" />
 
 </launch>

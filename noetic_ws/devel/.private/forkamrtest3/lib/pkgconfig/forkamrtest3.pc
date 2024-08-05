@@ -1,0 +1,8 @@
+prefix=/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/forkamrtest3
+
+Name: forkamrtest3
+Description: Description of forkamrtest3
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
