@@ -143,22 +143,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/forkamrtest3" TYPE FILE FILES "/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/package.xml")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/forkamrtest3/config" TYPE DIRECTORY FILES "/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/forkamrtest3/launch" TYPE DIRECTORY FILES "/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/launch/")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/forkamrtest3/meshes" TYPE DIRECTORY FILES "/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/meshes/")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/forkamrtest3/urdf" TYPE DIRECTORY FILES "/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/urdf/")
-endif()
-
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/avinaash/autonomous_forklift/noetic_ws/build/forkamrtest3/gtest/cmake_install.cmake")

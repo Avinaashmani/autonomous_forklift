@@ -1,51 +1,47 @@
 <launch>
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <!-- <arg name="world_name" value="$(find vab_description)/world/new_world.world"/> -->
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
-  </include>
+  <!-- NOTE:  Before running this launch file      -->
+  <!-- First launch gazebo manually by:            -->
+  <!-- roslaunch jetbot_gazebo spawn_jetbot.launch -->
 
-  <node
-    name="spawn_model"
-    pkg="gazebo_ros"
-    type="spawn_model"
-    args="-file $(find forkamrtest3)/urdf/forkamrtest3.urdf -urdf -model gearfork_bot"
-    output="screen" />
+  <!-- Arguments -->
+  <!-- Move base or Move base flex -->
+  <arg name="move_base_flex" default='0' doc="move_base type [0, default = move_base; 1 = move_base_flex]"/>
+  <!-- Map, visualization config and other args -->
+  <arg name="map_file" default="$(find forkamrtest3)/maps/map.yaml"/>  
+  <arg name="move_forward_only" default="false"/>
+  <arg name="model" />
+  <!-- Position of the robot -->
+  <arg name="x" default="1.0"/>
+  <arg name="y" default="2.0"/>
+  <arg name="z" default="-1.0"/>
+  <arg name="yaw" default="0.0"/>    
+  <!-- Position of the robot -->
+  <arg name="local_planner" default="dwa" />
 
-  <node
-    name="fake_joint_calibration"
-    pkg="rostopic"
-    type="rostopic"
-    args="pub /calibrated std_msgs/Bool true" />
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
-  <arg
-    name="model" />
+  <!-- AMCL -->
+  <include file="$(find forkamrtest3)/launch/amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find forkamrtest3)/launch/move_base.launch" />
+
   <param
     name="robot_description"
-    textfile="$(find gearfork_bot)/urdf/gearfork_bot.urdf" />
-  
-  <node
-    name="joint_state_publisher"
-    pkg="joint_state_publisher"
-    type="joint_state_publisher" />
-  
-  <node
-    name="robot_state_publisher"
-    pkg="robot_state_publisher"
-    type="robot_state_publisher" />
-  
+    textfile="$(find forkamrtest3)/urdf/forkamrtest3.urdf" />
+
   <node
     name="rviz"
     pkg="rviz"
     type="rviz"
-    args="-d $(find gearfork_bot)/urdf.rviz" />
+    args="-d $(find forkamrtest3)/urdf.rviz" />
 
-<include file="$(find forkamrtest3)/launch/gmapping.launch" />
-<include file="$(find forkamrtest3)/launch/navigation.launch" />
-<!-- <include file="/home/avinaash/catkin_ws/src/full_coverage_path_planner/test/full_coverage_path_planner/test_full_coverage_path_planner.launch" /> -->
-<!-- <include file="/home/avinaash/catkin_ws/src/path_tracking_pid/launch/path_tracking_pid_mbf.launch" /> -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find forkamrtest3)/urdf/forkamrtest3.urdf"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model vab"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  
+  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
 
 </launch>
