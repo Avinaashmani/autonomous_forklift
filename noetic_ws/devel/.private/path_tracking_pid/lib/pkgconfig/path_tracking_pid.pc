@@ -1,0 +1,8 @@
+prefix=/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/path_tracking_pid
+
+Name: path_tracking_pid
+Description: Description of path_tracking_pid
+Version: 2.19.0
+Cflags: -I/home/avinaash/autonomous_forklift/noetic_ws/devel/.private/path_tracking_pid/include
+Libs: -L${prefix}/lib 
+Requires: actionlib actionlib_msgs dynamic_reconfigure geometry_msgs mbf_costmap_core mbf_msgs message_runtime nav_msgs pluginlib roscpp std_msgs tf2_geometry_msgs tf2_ros visualization_msgs

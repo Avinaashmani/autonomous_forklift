@@ -1,3 +1,14 @@
 {
-    "cmake.sourceDirectory": "/home/avinaash/noetic_ws/src/ros_controllers/imu_sensor_controller"
+    "cmake.sourceDirectory": "/home/avinaash/noetic_ws/src/ros_controllers/imu_sensor_controller",
+    "cmake.configureOnOpen": false,
+    "python.autoComplete.extraPaths": [
+        "/home/avinaash/catkin_ws/devel/lib/python3/dist-packages",
+        "/home/avinaash/autonomous_forklift/noetic_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/avinaash/catkin_ws/devel/lib/python3/dist-packages",
+        "/home/avinaash/autonomous_forklift/noetic_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
 }

@@ -1,0 +1,48 @@
+\subsubsection usage Usage
+\verbatim
+<node name="path_tracking_pid" pkg="path_tracking_pid" type="path_tracking_pid">
+  <param name="l" type="double" value="0.5" />
+  <param name="target_x_vel" type="double" value="2.0" />
+  <param name="target_end_x_vel" type="double" value="0.0" />
+  <param name="target_x_acc" type="double" value="2.0" />
+  <param name="target_x_decc" type="double" value="2.0" />
+  <param name="abs_minimum_x_vel" type="double" value="0.025" />
+  <param name="max_error_x_vel" type="double" value="1.0" />
+  <param name="max_x_vel" type="double" value="5.0" />
+  <param name="max_yaw_vel" type="double" value="2.0" />
+  <param name="max_yaw_acc" type="double" value="2.0" />
+  <param name="min_turning_radius" type="double" value="2.0" />
+  <param name="track_base_link" type="bool" value="False" />
+  <param name="init_vel_method" type="int" value="1" />
+  <param name="init_vel_max_diff" type="double" value="0.5" />
+  <param name="Kp_lat" type="double" value="1.0" />
+  <param name="Ki_lat" type="double" value="0.0" />
+  <param name="Kd_lat" type="double" value="0.3" />
+  <param name="Kp_ang" type="double" value="1.0" />
+  <param name="Ki_ang" type="double" value="0.0" />
+  <param name="Kd_ang" type="double" value="0.3" />
+  <param name="lowpass_cutoff" type="double" value="0.0" />
+  <param name="lowpass_damping" type="double" value="1.4142135623730951" />
+  <param name="feedback_lat" type="bool" value="True" />
+  <param name="feedback_ang" type="bool" value="False" />
+  <param name="feedforward_lat" type="bool" value="False" />
+  <param name="feedforward_ang" type="bool" value="False" />
+  <param name="controller_debug_enabled" type="bool" value="False" />
+  <param name="use_mpc" type="bool" value="False" />
+  <param name="anti_collision" type="bool" value="False" />
+  <param name="mpc_simulation_sample_time" type="double" value="0.05" />
+  <param name="mpc_max_error_lat" type="double" value="0.5" />
+  <param name="mpc_max_fwd_iterations" type="int" value="200" />
+  <param name="mpc_min_x_vel" type="double" value="0.5" />
+  <param name="mpc_max_vel_optimization_iterations" type="int" value="5" />
+  <param name="max_steering_angle" type="double" value="3.1416" />
+  <param name="max_steering_x_vel" type="double" value="3.0" />
+  <param name="max_steering_x_acc" type="double" value="2.0" />
+  <param name="max_steering_yaw_vel" type="double" value="0.5" />
+  <param name="max_steering_yaw_acc" type="double" value="0.5" />
+  <param name="obstacle_speed_reduction" type="bool" value="True" />
+  <param name="collision_look_ahead_length_offset" type="double" value="1.0" />
+  <param name="collision_look_ahead_resolution" type="double" value="1.0" />
+</node>
+\endverbatim
+

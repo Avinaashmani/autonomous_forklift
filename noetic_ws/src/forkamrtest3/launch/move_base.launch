@@ -1,25 +1,39 @@
 <launch>
   <!-- Arguments -->
-  <arg name="cmd_vel_topic" default="/jetbot_velocity_controller/cmd_vel/" />
+  <arg name="cmd_vel_topic" default="/cmd_vel/" />
   <arg name="odom_topic" default="odom" />
-  <arg name="move_forward_only" default="false"/>
-  <arg name="local_planner" default='dwa' />
+  <arg name="local_planner" default='PathTrackingPID' />
   
   <!-- Move base flex -->
 
-    <node name="move_base_flex" pkg="mbf_costmap_nav" type="mbf_costmap_nav" required="true" output="screen">
+    <node pkg="mbf_costmap_nav" type="mbf_costmap_nav" respawn="false" name="move_base_flex" output="screen">
+      <rosparam file="$(find forkamrtest3)/config/planners.yaml" command="load" />
+      <rosparam file="$(find forkamrtest3)/config/controllers.yaml" command="load" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/local_costmap_params.yaml" command="load" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/global_costmap_params.yaml" command="load" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/move_base_flex_params.yaml" command="load"/>
-      <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/pid_path_tracking_params.yaml" command="load" />
+      <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/recovery_behaviours.yaml" command="load" />
       <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
       <remap from="odom" to="$(arg odom_topic)"/>
     </node>
 
+    <!-- Interpolator -->
+    <node name="interpolator" pkg="tracking_pid" type="path_interpolator">
+        <param name="target_x_vel" value="0.7"/>
+        <param name="target_x_acc" value="0.5"/>
+    </node>
+
+    <!-- PID controller -->
+    <node name="controller" pkg="tracking_pid" type="controller" output="screen">
+      <remap from="move_base/cmd_vel" to="/move_base/cmd_vel"/>
+      <remap from="local_trajectory" to="trajectory"/>
+      <param name="controller_debug_enabled" value="True"/>
+      <param name="l" value="0.5"/>
+      <param name="track_base_link" value="True"/>
+    </node>
+
     <node name="move_base_legacy_relay" pkg="mbf_costmap_nav" type="move_base_legacy_relay.py"/>
-
-
 
 </launch>

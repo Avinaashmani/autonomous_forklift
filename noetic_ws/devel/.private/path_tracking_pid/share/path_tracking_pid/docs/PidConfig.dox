@@ -1,0 +1,47 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~l" : \b [double] Distance between axle and control point min: -10.0, default: 0.5, max: 10.0
+- \b "~target_x_vel" : \b [double] Target forward velocity min: -10.0, default: 2.0, max: 10.0
+- \b "~target_end_x_vel" : \b [double] Target forward velocity min: -10.0, default: 0.0, max: 10.0
+- \b "~target_x_acc" : \b [double] Target forward acceleration min: 1e-09, default: 2.0, max: 10.0
+- \b "~target_x_decc" : \b [double] Target forward decceleration min: 1e-09, default: 2.0, max: 10.0
+- \b "~abs_minimum_x_vel" : \b [double] Absolute minimum velocity for reaching target min: 0.0, default: 0.025, max: 0.5
+- \b "~max_error_x_vel" : \b [double] Maximum allowed error in forward velocity min: 1e-09, default: 1.0, max: 10.0
+- \b "~max_x_vel" : \b [double] Maximum x velocity, used for scaling purposes min: 0.0, default: 5.0, max: 10.0
+- \b "~max_yaw_vel" : \b [double] Maximum yaw velocity min: 0.0, default: 2.0, max: 10.0
+- \b "~max_yaw_acc" : \b [double] Maximum yaw acceleration min: 0.0, default: 2.0, max: 10.0
+- \b "~min_turning_radius" : \b [double] Minimum turning radius min: 0.0, default: 2.0, max: 100.0
+- \b "~track_base_link" : \b [bool] Should the controller track the path using the base_link frame? min: False, default: False, max: True
+- \b "~init_vel_method" : \b [int] Initial velocity method min: 0, default: 1, max: 3
+- \b "~init_vel_max_diff" : \b [double] Maximum vel-diff allowed when starting a path (-1 to ignore, only active upon 'init_vel_method'==InternalSetpoint) min: -1.0, default: 0.5, max: 10.0
+- \b "~Kp_lat" : \b [double] Kp Lateral min: 0.0, default: 1.0, max: 10.0
+- \b "~Ki_lat" : \b [double] Ki Lateral min: 0.0, default: 0.0, max: 2.0
+- \b "~Kd_lat" : \b [double] Kd Lateral min: 0.0, default: 0.3, max: 10.0
+- \b "~Kp_ang" : \b [double] Kp Angular min: 0.0, default: 1.0, max: 10.0
+- \b "~Ki_ang" : \b [double] Ki Angular min: 0.0, default: 0.0, max: 2.0
+- \b "~Kd_ang" : \b [double] Kd Angular min: 0.0, default: 0.3, max: 10.0
+- \b "~lowpass_cutoff" : \b [double] Lowpass cutoff (Hz), 0 disables the filter min: 0.0, default: 0.0, max: 1000.0
+- \b "~lowpass_damping" : \b [double] Lowpass damping min: 0.0, default: 1.4142135623730951, max: 10.0
+- \b "~feedback_lat" : \b [bool] Enable lateral feedback? min: False, default: True, max: True
+- \b "~feedback_ang" : \b [bool] Enable angular feedback? min: False, default: False, max: True
+- \b "~feedforward_lat" : \b [bool] Enable lateral feedforward? min: False, default: False, max: True
+- \b "~feedforward_ang" : \b [bool] Enable angular feedforward? min: False, default: False, max: True
+- \b "~controller_debug_enabled" : \b [bool] Debug controller intermediate gains min: False, default: False, max: True
+- \b "~use_mpc" : \b [bool] Limit forward velocity based on predictions of the lateral error min: False, default: False, max: True
+- \b "~anti_collision" : \b [bool] Stop on lethal obstacles min: False, default: False, max: True
+- \b "~mpc_simulation_sample_time" : \b [double] MPC simulation sample time min: 1e-09, default: 0.05, max: 10.0
+- \b "~mpc_max_error_lat" : \b [double] MPC maximum allowed lateral error min: 1e-09, default: 0.5, max: 10.0
+- \b "~mpc_max_fwd_iterations" : \b [int] MPC maximum allowed iterations forward in time min: 0, default: 200, max: 1000000
+- \b "~mpc_min_x_vel" : \b [double] MPC minimum absolute forward velocity min: 1e-09, default: 0.5, max: 10.0
+- \b "~mpc_max_vel_optimization_iterations" : \b [int] MPC maximum allowed velocity optimization iterations min: 1, default: 5, max: 1000
+- \b "~max_steering_angle" : \b [double] Maximum steering angle for tricycle model min: 0.0, default: 3.1416, max: 3.1416
+- \b "~max_steering_x_vel" : \b [double] Maximum steering x velocity for tricycle model min: 0.0, default: 3.0, max: 10.0
+- \b "~max_steering_x_acc" : \b [double] Maximum steering x acceleration for tricycle model min: 0.0, default: 2.0, max: 10.0
+- \b "~max_steering_yaw_vel" : \b [double] Maximum steering yaw velocity for tricycle model min: 0.0, default: 0.5, max: 10.0
+- \b "~max_steering_yaw_acc" : \b [double] Maximum steering yaw acceleration for tricycle model min: 0.0, default: 0.5, max: 10.0
+- \b "~obstacle_speed_reduction" : \b [bool] Slow down on near obstacles min: False, default: True, max: True
+- \b "~collision_look_ahead_length_offset" : \b [double] Offset in length to project rectangle collision along path min: 0.0, default: 1.0, max: 5.0
+- \b "~collision_look_ahead_resolution" : \b [double] Spatial resolution to project rectangle collision along path min: 1e-09, default: 1.0, max: 10.0
+

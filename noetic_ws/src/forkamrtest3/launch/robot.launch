@@ -19,14 +19,16 @@
   <arg name="local_planner" default="dwa" />
 
   <!-- Map server -->
-  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+  <!-- <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/> -->
 
   <!-- AMCL -->
   <include file="$(find forkamrtest3)/launch/amcl.launch"/>
 
   <!-- move_base -->
-  <include file="$(find forkamrtest3)/launch/move_base.launch" />
-
+  <!-- <include file="$(find forkamrtest3)/launch/move_base.launch" /> -->
+  <include file="$(find path_tracking_pid)/launch/path_tracking_pid_mbf.launch" />
+  <include file="$(find forkamrtest3)/launch/gmapping.launch" />
+  
   <param
     name="robot_description"
     textfile="$(find forkamrtest3)/urdf/forkamrtest3.urdf" />
@@ -42,6 +44,6 @@
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
   
-  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <include file="$(find gazebo_ros)/launch/warehouse_01.launch" />
 
 </launch>
