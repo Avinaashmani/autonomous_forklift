@@ -1,0 +1,8 @@
+prefix=/home/avinaash/autonomous_forklift/noetic_ws/install
+
+Name: ebot_description
+Description: Description of ebot_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib -lTricycleDriveModPlugin
+Requires: roscpp rospy std_msgs

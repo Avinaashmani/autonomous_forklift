@@ -1,0 +1,4 @@
+[35m[1mScanning dependencies of target TricycleDriveModPlugin[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/TricycleDriveModPlugin.dir/plugins/TricycleDriveModPlugin.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/avinaash/autonomous_forklift/noetic_ws/devel/.private/ebot_description/lib/libTricycleDriveModPlugin.so[0m
+[100%] Built target TricycleDriveModPlugin

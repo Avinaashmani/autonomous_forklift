@@ -1,0 +1,4 @@
+<launch>
+    <node name='straight_line_path_planner' pkg='forkamrtest3' type='global_path_planner_03.py' output='screen' />
+    <!-- <node name='pallet_tf_publisher' pkg='gearfork_bot' type='fake_tf_publisher.py' output='screen' /> -->
+</launch>

@@ -1,0 +1,9 @@
+<library path="lib/libstraight_line_global_planner">
+  <class name="custom_global_planner/StraightLineGlobalPlanner"
+         type="custom_global_planner::StraightLineGlobalPlanner"
+         base_class_type="nav_core::BaseGlobalPlanner">
+    <description>
+      A global planner that follows a straight line path.
+    </description>
+  </class>
+</library>

@@ -1,0 +1,9 @@
+<launch>
+  <!-- Load robot_pose_ekf parameters -->
+  <rosparam file="$(find forkamrtest3)/config/ekf_localization_local.yaml" command="load"/>
+
+  <!-- Start the robot_pose_ekf node -->
+  <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf" output="screen">
+    <param name="output_frame" value="odom/filtered"/>
+  </node>
+</launch>

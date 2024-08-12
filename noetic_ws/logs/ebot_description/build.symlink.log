@@ -1,0 +1,4 @@
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/libTricycleDriveModPlugin.so
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/lib/pkgconfig/ebot_description.pc
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/ebot_description/cmake/ebot_descriptionConfig.cmake
+Symlinking /home/avinaash/autonomous_forklift/noetic_ws/devel/share/ebot_description/cmake/ebot_descriptionConfig-version.cmake

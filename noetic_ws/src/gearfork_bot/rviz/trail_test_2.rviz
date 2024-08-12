@@ -67,17 +67,9 @@ Visualization Manager:
           Value: true
         lroller_link:
           Value: true
-        map:
-          Value: true
         motor_link:
           Value: true
         odom:
-          Value: true
-        point_1:
-          Value: true
-        point_2:
-          Value: true
-        point_3:
           Value: true
         rroller_link:
           Value: true
@@ -92,26 +84,21 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          odom:
-            base_link:
-              base_footprint:
+        odom:
+          base_link:
+            base_footprint:
+              {}
+            laser_link:
+              {}
+            lroller_link:
+              {}
+            motor_link:
+              wheel_link:
                 {}
-              laser_link:
-                {}
-              lroller_link:
-                {}
-              motor_link:
-                wheel_link:
-                  {}
-              rroller_link:
-                {}
-              steering_link:
-                {}
-            point_1:
-              point_2:
-                point_3:
-                  {}
+            rroller_link:
+              {}
+            steering_link:
+              {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -222,15 +209,40 @@ Visualization Manager:
       Topic: /planned_path
       Unreliable: false
       Value: true
-    - Alpha: 0.699999988079071
-      Class: rviz/Map
-      Color Scheme: map
-      Draw Behind: false
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
       Enabled: true
-      Name: Map
-      Topic: /map
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Queue Size: 10
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic: /odom
       Unreliable: false
-      Use Timestamp: false
       Value: true
   Enabled: true
   Global Options:
@@ -276,9 +288,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.42979729175567627
+      Pitch: 0.47979736328125
       Target Frame: <Fixed Frame>
-      Yaw: 0.9838818311691284
+      Yaw: 1.0538818836212158
     Saved: ~
 Window Geometry:
   Displays:

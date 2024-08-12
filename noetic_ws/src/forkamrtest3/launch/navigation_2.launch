@@ -1,0 +1,16 @@
+<launch>
+  <!-- Arguments -->
+
+  <node name="move_base_flex" pkg="mbf_costmap_nav" type="mbf_costmap_nav" required="true" output="screen">
+    <rosparam file="$(find forkamrtest3)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find forkamrtest3)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find forkamrtest3)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find forkamrtest3)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find forkamrtest3)/config/move_base.yaml" command="load"/>
+    <rosparam file="$(find forkamrtest3)/config/dwa_local_planner_params.yaml" command="load" />
+  </node>
+
+  <node name="move_base_legacy_relay" pkg="mbf_costmap_nav" type="move_base_legacy_relay.py">
+    <rosparam file="$(find forkamrtest3)/config/default_planner.yaml" command="load"/>
+  </node>
+</launch>

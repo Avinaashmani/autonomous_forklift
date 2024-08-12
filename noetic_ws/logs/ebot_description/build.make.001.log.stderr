@@ -1,0 +1,58 @@
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:[m[K In constructor ‘[01m[Kgazebo::GazeboRosTricycleModDrive::GazeboRosTricycleModDrive()[m[K’:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:32:58:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[Kgazebo::GazeboRosTricycleModDrive[m[K’ does not have any field named ‘[01m[Kwheel_enc_[m[K’
+   32 | GazeboRosTricycleModDrive::GazeboRosTricycleModDrive() : [01;31m[Kwheel_enc_[m[K(0), steering_enc_(0) {}
+      |                                                          [01;31m[K^~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:32:73:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[Kgazebo::GazeboRosTricycleModDrive[m[K’ does not have any field named ‘[01m[Ksteering_enc_[m[K’
+   32 | GazeboRosTricycleModDrive::GazeboRosTricycleModDrive() : wheel_enc_(0), [01;31m[Ksteering_enc_[m[K(0) {}
+      |                                                                         [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:[m[K In member function ‘[01m[Kvirtual void gazebo::GazeboRosTricycleModDrive::Load(gazebo::physics::ModelPtr, sdf::v9::ElementPtr)[m[K’:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:115:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kwheel_enc_subscriber_[m[K’ was not declared in this scope
+  115 |     [01;31m[Kwheel_enc_subscriber_[m[K = gazebo_ros_->node()->subscribe("/wheel_enc", 1, &GazeboRosTricycleModDrive::wheelEncCallback, this);
+      |     [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:115:105:[m[K [01;31m[Kerror: [m[K‘[01m[KwheelEncCallback[m[K’ is not a member of ‘[01m[Kgazebo::GazeboRosTricycleModDrive[m[K’
+  115 |     wheel_enc_subscriber_ = gazebo_ros_->node()->subscribe("/wheel_enc", 1, &GazeboRosTricycleModDrive::[01;31m[KwheelEncCallback[m[K, this);
+      |                                                                                                         [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:116:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksteering_enc_subscriber_[m[K’ was not declared in this scope
+  116 |     [01;31m[Ksteering_enc_subscriber_[m[K = gazebo_ros_->node()->subscribe("/steering_enc", 1, &GazeboRosTricycleModDrive::steeringEncCallback, this);
+      |     [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:116:111:[m[K [01;31m[Kerror: [m[K‘[01m[KsteeringEncCallback[m[K’ is not a member of ‘[01m[Kgazebo::GazeboRosTricycleModDrive[m[K’
+  116 |     steering_enc_subscriber_ = gazebo_ros_->node()->subscribe("/steering_enc", 1, &GazeboRosTricycleModDrive::[01;31m[KsteeringEncCallback[m[K, this);
+      |                                                                                                               [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:[m[K At global scope:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:125:66:[m[K [01;31m[Kerror: [m[K‘[01m[KInt64[m[K’ in namespace ‘[01m[Kstd_msgs[m[K’ does not name a type
+  125 | void GazeboRosTricycleModDrive::wheelEncCallback(const std_msgs::[01;31m[KInt64[m[K::ConstPtr &msg)
+      |                                                                  [01;31m[K^~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:125:82:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+  125 | void GazeboRosTricycleModDrive::wheelEncCallback(const std_msgs::Int64::ConstPtr [01;31m[K&[m[Kmsg)
+      |                                                                                  [01;31m[K^[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:125:81:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+  125 | void GazeboRosTricycleModDrive::wheelEncCallback[34m[K([m[Kconst std_msgs::Int64::ConstPtr[01;31m[K [m[K[32m[K&[m[Kmsg)
+      |                                                 [34m[K~[m[K                               [01;31m[K^[m[K[32m[K~[m[K
+      |                                                                                 [32m[K)[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:125:83:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kmsg[m[K’
+  125 | void GazeboRosTricycleModDrive::wheelEncCallback(const std_msgs::Int64::ConstPtr &[01;31m[Kmsg[m[K)
+      |                                                                                   [01;31m[K^~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:131:69:[m[K [01;31m[Kerror: [m[K‘[01m[KInt64[m[K’ in namespace ‘[01m[Kstd_msgs[m[K’ does not name a type
+  131 | void GazeboRosTricycleModDrive::steeringEncCallback(const std_msgs::[01;31m[KInt64[m[K::ConstPtr &msg)
+      |                                                                     [01;31m[K^~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:131:85:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+  131 | void GazeboRosTricycleModDrive::steeringEncCallback(const std_msgs::Int64::ConstPtr [01;31m[K&[m[Kmsg)
+      |                                                                                     [01;31m[K^[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:131:84:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+  131 | void GazeboRosTricycleModDrive::steeringEncCallback[34m[K([m[Kconst std_msgs::Int64::ConstPtr[01;31m[K [m[K[32m[K&[m[Kmsg)
+      |                                                    [34m[K~[m[K                               [01;31m[K^[m[K[32m[K~[m[K
+      |                                                                                    [32m[K)[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:131:86:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kmsg[m[K’
+  131 | void GazeboRosTricycleModDrive::steeringEncCallback(const std_msgs::Int64::ConstPtr &[01;31m[Kmsg[m[K)
+      |                                                                                      [01;31m[K^~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:[m[K In member function ‘[01m[Kvoid gazebo::GazeboRosTricycleModDrive::UpdateOdometryEncoder()[m[K’:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:366:30:[m[K [01;31m[Kerror: [m[K‘[01m[Kwheel_enc_[m[K’ was not declared in this scope
+  366 |     double linear_velocity = [01;31m[Kwheel_enc_[m[K * (diameter_encoder_wheel_ / 2.0);  // Conversion based on encoder resolution
+      |                              [01;31m[K^~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:369:31:[m[K [01;31m[Kerror: [m[K‘[01m[Ksteering_enc_[m[K’ was not declared in this scope; did you mean ‘[01m[Ksteering_speed_[m[K’?
+  369 |     double angular_velocity = [01;31m[Ksteering_enc_[m[K;  // Conversion to radians might be needed if in degrees/ticks
+      |                               [01;31m[K^~~~~~~~~~~~~[m[K
+      |                               [32m[Ksteering_speed_[m[K
+make[2]: *** [CMakeFiles/TricycleDriveModPlugin.dir/build.make:63: CMakeFiles/TricycleDriveModPlugin.dir/plugins/TricycleDriveModPlugin.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:227: CMakeFiles/TricycleDriveModPlugin.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

@@ -1,10 +1,10 @@
 <launch>
 
   <!-- Map server -->
-  <arg name="map_file" default="/home/avinaash/autonomous_forklift/noetic_ws/maps/warehouse_test_01.yaml"/>
+  <arg name="map_file" default="/home/avinaash/autonomous_forklift/noetic_ws/maps/warehouse_test_02.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
-  <arg name="use_map_topic"   default="false"/>
+  <arg name="use_map_topic"   default="true"/>
   <arg name="scan_topic"      default="/scan"/>
   <arg name="initial_pose_x"  default="0.0"/>
   <arg name="initial_pose_y"  default="0.0"/>

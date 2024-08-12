@@ -1,0 +1,27 @@
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:[m[K In member function ‘[01m[Kvirtual void gazebo::GazeboRosTricycleModDrive::Load(gazebo::physics::ModelPtr, sdf::v9::ElementPtr)[m[K’:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:110:105:[m[K [01;31m[Kerror: [m[K‘[01m[KwheelEncCallback[m[K’ is not a member of ‘[01m[Kgazebo::GazeboRosTricycleModDrive[m[K’
+  110 |     wheel_enc_subscriber_ = gazebo_ros_->node()->subscribe("/wheel_enc", 1, &GazeboRosTricycleModDrive::[01;31m[KwheelEncCallback[m[K, this);
+      |                                                                                                         [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:111:111:[m[K [01;31m[Kerror: [m[K‘[01m[KsteeringEncCallback[m[K’ is not a member of ‘[01m[Kgazebo::GazeboRosTricycleModDrive[m[K’
+  111 |     steering_enc_subscriber_ = gazebo_ros_->node()->subscribe("/steering_enc", 1, &GazeboRosTricycleModDrive::[01;31m[KsteeringEncCallback[m[K, this);
+      |                                                                                                               [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:[m[K At global scope:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:120:6:[m[K [01;31m[Kerror: [m[Kno declaration matches ‘[01m[Kvoid gazebo::GazeboRosTricycleModDrive::wheelEncCallback(const ConstPtr&)[m[K’
+  120 | void [01;31m[KGazeboRosTricycleModDrive[m[K::wheelEncCallback(const std_msgs::Int64::ConstPtr &msg)
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:120:6:[m[K [01;36m[Knote: [m[Kno functions named ‘[01m[Kvoid gazebo::GazeboRosTricycleModDrive::wheelEncCallback(const ConstPtr&)[m[K’
+In file included from [01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:16[m[K:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.h:33:7:[m[K [01;36m[Knote: [m[K‘[01m[Kclass gazebo::GazeboRosTricycleModDrive[m[K’ defined here
+   33 | class [01;36m[KGazeboRosTricycleModDrive[m[K : public ModelPlugin {
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:126:6:[m[K [01;31m[Kerror: [m[Kno declaration matches ‘[01m[Kvoid gazebo::GazeboRosTricycleModDrive::steeringEncCallback(const ConstPtr&)[m[K’
+  126 | void [01;31m[KGazeboRosTricycleModDrive[m[K::steeringEncCallback(const std_msgs::Int64::ConstPtr &msg)
+      |      [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:126:6:[m[K [01;36m[Knote: [m[Kno functions named ‘[01m[Kvoid gazebo::GazeboRosTricycleModDrive::steeringEncCallback(const ConstPtr&)[m[K’
+In file included from [01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:16[m[K:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.h:33:7:[m[K [01;36m[Knote: [m[K‘[01m[Kclass gazebo::GazeboRosTricycleModDrive[m[K’ defined here
+   33 | class [01;36m[KGazeboRosTricycleModDrive[m[K : public ModelPlugin {
+      |       [01;36m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/TricycleDriveModPlugin.dir/build.make:63: CMakeFiles/TricycleDriveModPlugin.dir/plugins/TricycleDriveModPlugin.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:227: CMakeFiles/TricycleDriveModPlugin.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

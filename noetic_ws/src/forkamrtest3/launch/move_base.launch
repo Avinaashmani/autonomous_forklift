@@ -7,14 +7,14 @@
   <!-- Move base flex -->
 
     <node pkg="mbf_costmap_nav" type="mbf_costmap_nav" respawn="false" name="move_base_flex" output="screen">
-      <rosparam file="$(find forkamrtest3)/config/planners.yaml" command="load" />
-      <rosparam file="$(find forkamrtest3)/config/controllers.yaml" command="load" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/local_costmap_params.yaml" command="load" />
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/global_costmap_params.yaml" command="load" />
-      <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/move_base_flex_params.yaml" command="load"/>
       <rosparam file="/home/avinaash/autonomous_forklift/noetic_ws/src/forkamrtest3/config/recovery_behaviours.yaml" command="load" />
+      <rosparam file="$(find path_tracking_pid)/param/controllers.yaml" command="load" />
+      <rosparam file="$(find path_tracking_pid)/param/path_tracking_pid.yaml" command="load" />
+      <rosparam file="$(find path_tracking_pid)/test/local_costmap_params.yaml" command="load" />
       <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
       <remap from="odom" to="$(arg odom_topic)"/>
     </node>
@@ -27,13 +27,13 @@
 
     <!-- PID controller -->
     <node name="controller" pkg="tracking_pid" type="controller" output="screen">
-      <remap from="move_base/cmd_vel" to="/move_base/cmd_vel"/>
+      <remap from="move_base/cmd_vel" to="/cmd_vel"/>
       <remap from="local_trajectory" to="trajectory"/>
       <param name="controller_debug_enabled" value="True"/>
       <param name="l" value="0.5"/>
       <param name="track_base_link" value="True"/>
     </node>
 
-    <node name="move_base_legacy_relay" pkg="mbf_costmap_nav" type="move_base_legacy_relay.py"/>
+    <!-- <node name="move_base_legacy_relay" pkg="mbf_costmap_nav" type="move_base_legacy_relay.py"/> -->
 
 </launch>

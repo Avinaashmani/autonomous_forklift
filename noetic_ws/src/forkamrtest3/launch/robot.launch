@@ -1,49 +1,57 @@
 <launch>
-  <!-- NOTE:  Before running this launch file      -->
-  <!-- First launch gazebo manually by:            -->
-  <!-- roslaunch jetbot_gazebo spawn_jetbot.launch -->
-
-  <!-- Arguments -->
-  <!-- Move base or Move base flex -->
+  
   <arg name="move_base_flex" default='0' doc="move_base type [0, default = move_base; 1 = move_base_flex]"/>
-  <!-- Map, visualization config and other args -->
-  <arg name="map_file" default="$(find forkamrtest3)/maps/map.yaml"/>  
-  <arg name="move_forward_only" default="false"/>
-  <arg name="model" />
+
   <!-- Position of the robot -->
   <arg name="x" default="1.0"/>
   <arg name="y" default="2.0"/>
   <arg name="z" default="-1.0"/>
   <arg name="yaw" default="0.0"/>    
-  <!-- Position of the robot -->
-  <arg name="local_planner" default="dwa" />
-
-  <!-- Map server -->
-  <!-- <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/> -->
 
   <!-- AMCL -->
   <include file="$(find forkamrtest3)/launch/amcl.launch"/>
+  <node pkg="tf" type="static_transform_publisher" name="scan" args="0 0 0 0 0 0 base_link laser_link 1000" />
+
 
   <!-- move_base -->
-  <!-- <include file="$(find forkamrtest3)/launch/move_base.launch" /> -->
-  <include file="$(find path_tracking_pid)/launch/path_tracking_pid_mbf.launch" />
-  <include file="$(find forkamrtest3)/launch/gmapping.launch" />
+  <include file="$(find forkamrtest3)/launch/move_base.launch" />
   
-  <param
-    name="robot_description"
-    textfile="$(find forkamrtest3)/urdf/forkamrtest3.urdf" />
+  <!-- EKF -->
+  <include file="$(find forkamrtest3)/launch/ekf_localization_local.launch" />
+  
+  <!-- <include file="$(find forkamrtest3)/launch/gmapping.launch" /> -->
+  
+  <param name="robot_description" textfile="$(find forkamrtest3)/urdf/forkamrtest3.urdf" />
 
-  <node
-    name="rviz"
-    pkg="rviz"
-    type="rviz"
-    args="-d $(find forkamrtest3)/urdf.rviz" />
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find forkamrtest3)/rviz/rviz_1.rviz" />
+  
+  <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />
+
+  <node name="rqt_service_caller" pkg="rqt_service_caller" type="rqt_service_caller" /> -->
+  
+  <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" />
 
   <param name="robot_description" command="$(find xacro)/xacro $(find forkamrtest3)/urdf/forkamrtest3.urdf"/>
+  
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model vab"/>
+  
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="rate" value="10"/>
+  </node>
   
   <include file="$(find gazebo_ros)/launch/warehouse_01.launch" />
+
+  <!-- <include file="$(find forkamrtest3)/launch/ekf_localization_local.launch" /> -->    
+  
+  <node name='tricycle_kinematic_controller' pkg='forkamrtest3' type='odometry_02.py' output='screen' />   
+    
+  <!-- <node name='odom_publisher' pkg='forkamrtest3' type='tf_to_odom.py' output='screen' />    -->
+<!--   
+  <rosparam file = "$(find forkamrtest3)/config/motor_joint_controller.yaml" command="load"/>
+  
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/forkamrtest3" 
+                args="joint_state_controller steering_joint_controller velocity_joint_controller"/> -->
 
 </launch>

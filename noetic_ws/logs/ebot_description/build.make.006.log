@@ -1,0 +1,21 @@
+[35m[1mScanning dependencies of target TricycleDriveModPlugin[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/TricycleDriveModPlugin.dir/plugins/TricycleDriveModPlugin.cpp.o[0m
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:[m[K In member function ‘[01m[Kvirtual void gazebo::GazeboRosTricycleModDrive::FiniChild()[m[K’:
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:319:34:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Kcallback_queue_thread_[m[K’
+  319 |     gazebo_ros_->node()->shutdown
+      |                                  [01;31m[K^[m[K
+      |                                  [32m[K;[m[K
+  320 | 
+  321 |     [32m[Kcallback_queue_thread_[m[K.join();
+      |     [32m[K~~~~~~~~~~~~~~~~~~~~~~[m[K        
+[01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:319:26:[m[K [01;31m[Kerror: [m[Kinvalid use of non-static member function ‘[01m[Kvoid ros::NodeHandle::shutdown()[m[K’
+  319 |     [01;31m[Kgazebo_ros_->node()->shutdown[m[K
+      |     [01;31m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~[m[K
+In file included from [01m[K/opt/ros/noetic/include/ros/ros.h:45[m[K,
+                 from [01m[K/home/avinaash/autonomous_forklift/noetic_ws/src/tricyclEbot/ebot_description/plugins/TricycleDriveModPlugin.cpp:6[m[K:
+[01m[K/opt/ros/noetic/include/ros/node_handle.h:2166:8:[m[K [01;36m[Knote: [m[Kdeclared here
+ 2166 |   void [01;36m[Kshutdown[m[K();
+      |        [01;36m[K^~~~~~~~[m[K
+make[2]: *** [CMakeFiles/TricycleDriveModPlugin.dir/build.make:63: CMakeFiles/TricycleDriveModPlugin.dir/plugins/TricycleDriveModPlugin.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:227: CMakeFiles/TricycleDriveModPlugin.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

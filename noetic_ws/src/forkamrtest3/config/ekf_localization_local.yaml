@@ -1,0 +1,19 @@
+odom_used: true
+imu_used: true
+vo_used: false  # Set to true if using visual odometry
+
+odom_input: "/forkamrtest3/odom"
+imu_input: "/forkamrtest3/imu"
+vo_input: "/vo"  # Use if you have visual odometry data
+
+freq: 30.0
+sensor_timeout: 1.0
+
+imu_used_yaw: true
+imu_used_pitch: false
+imu_used_roll: false
+
+publish_tf: true
+output_frame: "odom"
+base_link_frame: "base_link"
+world_frame: "map"
